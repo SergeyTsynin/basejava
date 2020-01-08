@@ -4,37 +4,29 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    private Resume[] storage = new Resume[10000];
+    private static final int STORAGE_LIMIT = 10_000;
+    private Resume[] storage = new Resume[STORAGE_LIMIT];
     private int lastIndex = 0;
 
-    private int indexOfResume(String uuid) {
-        for (int i = 0; i < lastIndex; i++) {
-            if (storage[i].uuid.equals(uuid)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     void clear() {
-        Arrays.fill(storage, null);
+        Arrays.fill(storage, 0, lastIndex, null);
         lastIndex = 0;
     }
 
     void update(Resume r) {
-        int key = indexOfResume(r.uuid);
+        int key = indexOfResume(r.getUuid());
         if (key > -1) {
             storage[lastIndex] = r;
             lastIndex++;
         } else {
-            System.out.println("Error: resume " + r.uuid + " is not found for update.");
+            System.out.println("Error: resume " + r.getUuid() + " is not found for update.");
         }
     }
 
     void save(Resume r) {
-        int key = indexOfResume(r.uuid);
+        int key = indexOfResume(r.getUuid());
         if (key > -1) {
-            System.out.println("Error: resume " + r.uuid + " is already exists.");
+            System.out.println("Error: resume " + r.getUuid() + " is already exists.");
         } else if (lastIndex < storage.length) {
             storage[lastIndex] = r;
             lastIndex++;
@@ -73,5 +65,14 @@ public class ArrayStorage {
 
     int size() {
         return lastIndex;
+    }
+
+    private int indexOfResume(String uuid) {
+        for (int i = 0; i < lastIndex; i++) {
+            if (storage[i].getUuid().equals(uuid)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
