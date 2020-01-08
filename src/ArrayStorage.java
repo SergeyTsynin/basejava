@@ -1,52 +1,75 @@
+import java.util.Arrays;
+
 /**
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
-    int lastIndex = 0;
+    private Resume[] storage = new Resume[10000];
+    private int lastIndex = 0;
+
+    private int indexOfResume(String uuid) {
+        for (int i = 0; i < lastIndex; i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     void clear() {
-        for (int i = 0; i < lastIndex; i++) {
-            storage[i] = null;
-        }
+        Arrays.fill(storage, null);
         lastIndex = 0;
     }
 
+    void update(Resume r) {
+        int key = indexOfResume(r.uuid);
+        if (key > -1) {
+            storage[lastIndex] = r;
+            lastIndex++;
+        } else {
+            System.out.println("Error: resume " + r.uuid + " is not found for update.");
+        }
+    }
+
     void save(Resume r) {
-        storage[lastIndex] = r;
-        lastIndex++;
+        int key = indexOfResume(r.uuid);
+        if (key > -1) {
+            System.out.println("Error: resume " + r.uuid + " already exists.");
+        } else {
+            if (lastIndex < storage.length) {
+                storage[lastIndex] = r;
+                lastIndex++;
+            } else {
+                System.out.println("Error: storage is full, resume was not saved");
+            }
+        }
     }
 
     Resume get(String uuid) {
-        for (int i = 0; i < lastIndex; i++) {
-            if (storage[i].uuid.equals(uuid)) {
-                return storage[i];
-            }
+        int key = indexOfResume(uuid);
+        if (key > -1) {
+            return storage[key];
+        } else {
+            return null;
         }
-        return null;
     }
 
     void delete(String uuid) {
-        for (int i = 0; i < lastIndex; i++) {
-            if (storage[i].uuid.equals(uuid)) {
-                storage[i] = storage[lastIndex - 1];
-                storage[lastIndex - 1] = null;
-                lastIndex--;
-                break;
-            }
+        int key = indexOfResume(uuid);
+        if (key > -1) {
+            storage[key] = storage[lastIndex - 1];
+            storage[lastIndex - 1] = null;
+            lastIndex--;
+        } else {
+            System.out.println("Error: resume " + uuid + " is not found for delete.");
         }
-
     }
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        Resume[] resumes = new Resume[lastIndex];
-        for (int i = 0; i < lastIndex; i++) {
-            resumes[i] = storage[i];
-        }
-        return resumes;
+        return  Arrays.copyOf(storage, lastIndex);
     }
 
     int size() {
