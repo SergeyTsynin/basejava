@@ -34,15 +34,14 @@ public class ArrayStorage {
     void save(Resume r) {
         int key = indexOfResume(r.uuid);
         if (key > -1) {
-            System.out.println("Error: resume " + r.uuid + " already exists.");
+            System.out.println("Error: resume " + r.uuid + " is already exists.");
+        } else if (lastIndex < storage.length) {
+            storage[lastIndex] = r;
+            lastIndex++;
         } else {
-            if (lastIndex < storage.length) {
-                storage[lastIndex] = r;
-                lastIndex++;
-            } else {
-                System.out.println("Error: storage is full, resume was not saved");
-            }
+            System.out.println("Error: storage is full, resume was not saved");
         }
+
     }
 
     Resume get(String uuid) {
@@ -69,7 +68,7 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        return  Arrays.copyOf(storage, lastIndex);
+        return Arrays.copyOf(storage, lastIndex);
     }
 
     int size() {
