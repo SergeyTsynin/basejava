@@ -16,8 +16,7 @@ public class ArrayStorage {
     void update(Resume r) {
         int key = indexOfResume(r.getUuid());
         if (key > -1) {
-            storage[lastIndex] = r;
-            lastIndex++;
+            storage[key] = r;
         } else {
             System.out.println("Error: resume " + r.getUuid() + " is not found for update.");
         }
