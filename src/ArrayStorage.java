@@ -9,7 +9,7 @@ public class ArrayStorage {
     private int lastIndex = 0;
 
     void clear() {
-        Arrays.fill(storage, null);
+        Arrays.fill(storage, 0, lastIndex, null);
         lastIndex = 0;
     }
 
