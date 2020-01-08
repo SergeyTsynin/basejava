@@ -41,6 +41,7 @@ public class ArrayStorage {
         if (key > -1) {
             return storage[key];
         } else {
+            System.out.println("Error: resume " + uuid + " is not found.");
             return null;
         }
     }
