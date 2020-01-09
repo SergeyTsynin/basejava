@@ -1,3 +1,7 @@
+package storage;
+
+import model.Resume;
+
 import java.util.Arrays;
 
 /**
@@ -8,12 +12,12 @@ public class ArrayStorage {
     private Resume[] storage = new Resume[STORAGE_LIMIT];
     private int lastIndex = 0;
 
-    void clear() {
+    public void clear() {
         Arrays.fill(storage, 0, lastIndex, null);
         lastIndex = 0;
     }
 
-    void update(Resume r) {
+    public void update(Resume r) {
         int key = indexOfResume(r.getUuid());
         if (key > -1) {
             storage[key] = r;
@@ -22,7 +26,7 @@ public class ArrayStorage {
         }
     }
 
-    void save(Resume r) {
+    public void save(Resume r) {
         int key = indexOfResume(r.getUuid());
         if (key > -1) {
             System.out.println("Error: resume " + r.getUuid() + " is already exists.");
@@ -32,10 +36,9 @@ public class ArrayStorage {
         } else {
             System.out.println("Error: storage is full, resume was not saved");
         }
-
     }
 
-    Resume get(String uuid) {
+    public Resume get(String uuid) {
         int key = indexOfResume(uuid);
         if (key > -1) {
             return storage[key];
@@ -45,7 +48,7 @@ public class ArrayStorage {
         }
     }
 
-    void delete(String uuid) {
+    public void delete(String uuid) {
         int key = indexOfResume(uuid);
         if (key > -1) {
             storage[key] = storage[lastIndex - 1];
@@ -59,11 +62,11 @@ public class ArrayStorage {
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    Resume[] getAll() {
+    public Resume[] getAll() {
         return Arrays.copyOf(storage, lastIndex);
     }
 
-    int size() {
+    public int size() {
         return lastIndex;
     }
 
