@@ -18,16 +18,27 @@ public class MainTestArrayStorage {
         Resume r4 = new Resume();
         r4.setUuid("uuid4");
         Resume r5 = new Resume();
-        r4.setUuid("uuid5");
+        r5.setUuid("uuid5");
 
-        ARRAY_STORAGE.save(r1);
-        ARRAY_STORAGE.save(r2);
+        // save in wrong order
         ARRAY_STORAGE.save(r3);
-// test update
+        ARRAY_STORAGE.save(r4);
+        ARRAY_STORAGE.save(r5);
+        ARRAY_STORAGE.save(r2);
+        ARRAY_STORAGE.save(r1);
+
+        // try to save exists resume
+        // ARRAY_STORAGE.save(r1);
+
+        // test update
         ARRAY_STORAGE.update(r3);
         ARRAY_STORAGE.update(r4);
-
-        System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
+//
+        System.out.println("Size: " + ARRAY_STORAGE.size());
+        printAll();
+//        System.out.println("bs "+ Arrays.binarySearch(ARRAY_STORAGE.storage, 0, ARRAY_STORAGE.size(), r2));
+/*
+//        System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
         System.out.println("Size: " + ARRAY_STORAGE.size());
 
         System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
@@ -41,6 +52,7 @@ public class MainTestArrayStorage {
         printAll();
 
         System.out.println("Size: " + ARRAY_STORAGE.size());
+*/
     }
 
     private static void printAll() {
