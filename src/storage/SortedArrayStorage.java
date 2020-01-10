@@ -11,11 +11,6 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 //    }
 //
     @Override
-    public void update(Resume r) {
-
-    }
-
-    @Override
     public void save(Resume r) {
         int key = indexOfResume(r.getUuid());
         if (key > -1) {

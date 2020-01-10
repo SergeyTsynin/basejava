@@ -9,15 +9,6 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
-    public void update(Resume r) {
-        int key = indexOfResume(r.getUuid());
-        if (key > -1) {
-            storage[key] = r;
-        } else {
-            System.out.println("Error: resume " + r.getUuid() + " is not found for update.");
-        }
-    }
-
     public void save(Resume r) {
         int key = indexOfResume(r.getUuid());
         if (key > -1) {

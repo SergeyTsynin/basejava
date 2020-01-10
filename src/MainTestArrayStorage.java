@@ -19,6 +19,8 @@ public class MainTestArrayStorage {
         r4.setUuid("uuid4");
         Resume r5 = new Resume();
         r5.setUuid("uuid5");
+        Resume r6 = new Resume();
+        r6.setUuid("uuid6");
 
         // save in wrong order
         ARRAY_STORAGE.save(r3);
@@ -32,7 +34,7 @@ public class MainTestArrayStorage {
 
         // test update
         ARRAY_STORAGE.update(r3);
-        ARRAY_STORAGE.update(r4);
+        ARRAY_STORAGE.update(r6);
 //
         System.out.println("Size: " + ARRAY_STORAGE.size());
         printAll();
