@@ -9,11 +9,6 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
-    public void clear() {
-        Arrays.fill(storage, 0, lastIndex, null);
-        lastIndex = 0;
-    }
-
     public void update(Resume r) {
         int key = indexOfResume(r.getUuid());
         if (key > -1) {

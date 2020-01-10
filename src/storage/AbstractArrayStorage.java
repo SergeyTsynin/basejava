@@ -13,6 +13,11 @@ public abstract class AbstractArrayStorage implements Storage {
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int lastIndex = 0;
 
+    public void clear() {
+        Arrays.fill(storage, 0, lastIndex, null);
+        lastIndex = 0;
+    }
+
     public int size() {
         return lastIndex;
     }
