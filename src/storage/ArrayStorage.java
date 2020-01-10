@@ -7,10 +7,7 @@ import java.util.Arrays;
 /**
  * Array based storage for Resumes
  */
-public class ArrayStorage implements Storage{
-    private static final int STORAGE_LIMIT = 10_000;
-    private Resume[] storage = new Resume[STORAGE_LIMIT];
-    private int lastIndex = 0;
+public class ArrayStorage extends AbstractArrayStorage {
 
     public void clear() {
         Arrays.fill(storage, 0, lastIndex, null);
@@ -64,10 +61,6 @@ public class ArrayStorage implements Storage{
      */
     public Resume[] getAll() {
         return Arrays.copyOf(storage, lastIndex);
-    }
-
-    public int size() {
-        return lastIndex;
     }
 
     private int indexOfResume(String uuid) {
