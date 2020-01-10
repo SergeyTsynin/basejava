@@ -27,10 +27,6 @@ public abstract class AbstractArrayStorage implements Storage {
         }
     }
 
-    public int size() {
-        return lastIndex;
-    }
-
     public Resume get(String uuid) {
         int key = indexOfResume(uuid);
         if (key > -1) {
@@ -46,6 +42,10 @@ public abstract class AbstractArrayStorage implements Storage {
      */
     public Resume[] getAll() {
         return Arrays.copyOf(storage, lastIndex);
+    }
+
+    public int size() {
+        return lastIndex;
     }
 
     protected abstract int indexOfResume(String uuid);

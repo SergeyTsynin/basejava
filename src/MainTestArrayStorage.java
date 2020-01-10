@@ -35,26 +35,23 @@ public class MainTestArrayStorage {
         // test update
         ARRAY_STORAGE.update(r3);
         ARRAY_STORAGE.update(r6);
-//
-        System.out.println("Size: " + ARRAY_STORAGE.size());
+
         printAll();
-//        System.out.println("bs "+ Arrays.binarySearch(ARRAY_STORAGE.storage, 0, ARRAY_STORAGE.size(), r2));
-/*
-//        System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
         System.out.println("Size: " + ARRAY_STORAGE.size());
 
+        // test get
+        System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
         System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
-//
-//        System.out.println("bs "+Arrays.binarySearch(ARRAY_STORAGE.storage, 0, ARRAY_STORAGE.size(), r2));
+
+        // test delete
+        ARRAY_STORAGE.delete(r5.getUuid());
+        ARRAY_STORAGE.delete(r6.getUuid());
         printAll();
-        ARRAY_STORAGE.delete(r1.getUuid());
-//        ARRAY_STORAGE.delete(r1.uuid);
-        printAll();
+        System.out.println("Size: " + ARRAY_STORAGE.size());
+
         ARRAY_STORAGE.clear();
         printAll();
-
         System.out.println("Size: " + ARRAY_STORAGE.size());
-*/
     }
 
     private static void printAll() {
