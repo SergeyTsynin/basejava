@@ -35,16 +35,6 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
     }
 
-    public Resume get(String uuid) {
-        int key = indexOfResume(uuid);
-        if (key > -1) {
-            return storage[key];
-        } else {
-            System.out.println("Error: resume " + uuid + " is not found.");
-            return null;
-        }
-    }
-
     public void delete(String uuid) {
         int key = indexOfResume(uuid);
         if (key > -1) {
@@ -63,7 +53,7 @@ public class ArrayStorage extends AbstractArrayStorage {
         return Arrays.copyOf(storage, lastIndex);
     }
 
-    private int indexOfResume(String uuid) {
+    protected int indexOfResume(String uuid) {
         for (int i = 0; i < lastIndex; i++) {
             if (storage[i].getUuid().equals(uuid)) {
                 return i;
