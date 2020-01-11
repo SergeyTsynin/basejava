@@ -49,6 +49,17 @@ public abstract class AbstractArrayStorage implements Storage {
         }
     }
 
+    public void delete(String uuid) {
+        int key = indexOfResume(uuid);
+        if (key > -1) {
+            moveTailAfterDelete(key);
+            storage[lastIndex - 1] = null;
+            lastIndex--;
+        } else {
+            System.out.println("Error: resume " + uuid + " is not found for delete.");
+        }
+    }
+
     /**
      * @return array, contains only Resumes in storage (without null)
      */
@@ -63,4 +74,6 @@ public abstract class AbstractArrayStorage implements Storage {
     protected abstract int indexOfResume(String uuid);
 
     protected abstract void insertResume(Resume r, int insertPoint);
+
+    protected abstract void moveTailAfterDelete(int victim);
 }
