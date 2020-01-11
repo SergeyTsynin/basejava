@@ -38,4 +38,9 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
         return -1;
     }
+
+    @Override
+    protected void insertResume(Resume r, int insertPoint) {
+        storage[lastIndex] = r;
+    }
 }
