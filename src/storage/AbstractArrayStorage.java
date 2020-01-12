@@ -35,7 +35,6 @@ public abstract class AbstractArrayStorage implements Storage {
         if (key > -1) {
             throw new ExistStorageException(r.getUuid());
         } else if (lastIndex < STORAGE_LIMIT) {
-            key = ~key;
             insertResume(r, key);
             lastIndex++;
         } else {

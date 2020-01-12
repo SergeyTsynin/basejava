@@ -13,6 +13,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void insertResume(Resume r, int insertPoint) {
+        insertPoint = ~insertPoint;
         System.arraycopy(storage, insertPoint, storage, insertPoint + 1, lastIndex - insertPoint);
         storage[insertPoint] = r;
     }
