@@ -32,7 +32,8 @@ public abstract class AbstractArrayStorage implements Storage {
         if (key > -1) {
             System.out.println("Error: resume " + r.getUuid() + " is already exists.");
         } else if (lastIndex < STORAGE_LIMIT) {
-            insertResume(r, ~key);
+            key = ~key;
+            insertResume(r, key);
             lastIndex++;
         } else {
             System.out.println("Error: storage is full, resume was not saved");
@@ -52,7 +53,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public void delete(String uuid) {
         int key = indexOfResume(uuid);
         if (key > -1) {
-            moveTailAfterDelete(key);
+            removeResume(key);
             storage[lastIndex - 1] = null;
             lastIndex--;
         } else {
@@ -75,5 +76,5 @@ public abstract class AbstractArrayStorage implements Storage {
 
     protected abstract void insertResume(Resume r, int insertPoint);
 
-    protected abstract void moveTailAfterDelete(int victim);
+    protected abstract void removeResume(int removePoint);
 }

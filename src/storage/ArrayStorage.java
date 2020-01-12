@@ -22,7 +22,7 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void moveTailAfterDelete(int victim) {
-        storage[victim] = storage[lastIndex - 1];
+    protected void removeResume(int removePoint) {
+        storage[removePoint] = storage[lastIndex - 1];
     }
 }

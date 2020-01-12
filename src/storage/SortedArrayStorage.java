@@ -19,7 +19,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void moveTailAfterDelete(int victim) {
-        System.arraycopy(storage, victim + 1, storage, victim, lastIndex - victim - 1);
+    protected void removeResume(int removePoint) {
+        System.arraycopy(storage, removePoint + 1, storage, removePoint, lastIndex - removePoint - 1);
     }
 }
