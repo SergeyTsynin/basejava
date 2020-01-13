@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class AbstractArrayStorageTest {
+public abstract class AbstractArrayStorageTest {
 
     private Storage storage;
     private static final String UUID_1 = "uuid1";
@@ -24,10 +24,6 @@ public class AbstractArrayStorageTest {
 
     protected AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
-    }
-
-    public AbstractArrayStorageTest() {
-        this.storage = new ArrayStorage();
     }
 
     @Before
@@ -55,8 +51,6 @@ public class AbstractArrayStorageTest {
         storage.update(updatedResume);
         assertSame(storage.get(UUID_1), updatedResume);
         assertSize(3);
-        assertGet(RESUME_2);
-        assertGet(RESUME_3);
     }
 
     @Test(expected = NotExistStorageException.class)
@@ -74,6 +68,20 @@ public class AbstractArrayStorageTest {
     @Test(expected = ExistStorageException.class)
     public void saveExists() {
         storage.save(RESUME_3);
+    }
+
+    @Test
+    public void saveOverflow() {
+        storage.clear();
+        for (int i = 0; i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
+            storage.save(new Resume("r" + i));
+        }
+        try {
+            storage.save(new Resume());
+            Assert.fail("StorageException");
+        } catch (StorageException thrown) {
+            Assert.assertNotEquals("", thrown.getMessage());
+        }
     }
 
     @Test
@@ -108,20 +116,6 @@ public class AbstractArrayStorageTest {
         assertEquals(RESUME_2, arr[1]);
         assertEquals(RESUME_3, arr[2]);
         assertEquals(3, arr.length);
-    }
-
-    @Test
-    public void overloadStorage() {
-        storage.clear();
-        for (int i = 0; i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
-            storage.save(new Resume("r" + i));
-        }
-        try {
-            storage.save(new Resume());
-            Assert.fail("StorageException");
-        } catch (StorageException thrown) {
-            Assert.assertNotEquals("", thrown.getMessage());
-        }
     }
 
     private void assertSize(int size) {
