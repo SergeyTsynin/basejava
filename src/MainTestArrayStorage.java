@@ -1,4 +1,5 @@
 import model.Resume;
+import storage.ListStorage;
 import storage.SortedArrayStorage;
 import storage.Storage;
 
@@ -6,7 +7,7 @@ import storage.Storage;
  * Test for my storage.SortedArrayStorage implementation
  */
 public class MainTestArrayStorage {
-    private static final Storage ARRAY_STORAGE = new SortedArrayStorage();
+    private static final Storage ARRAY_STORAGE = new ListStorage();
 
     public static void main(String[] args) {
         Resume r1 = new Resume("uuid1");
@@ -15,6 +16,18 @@ public class MainTestArrayStorage {
         Resume r4 = new Resume("uuid4");
         Resume r5 = new Resume("uuid5");
         Resume r6 = new Resume("uuid6");
+
+//        System.out.println("Size: " + ARRAY_STORAGE.size());
+//        ARRAY_STORAGE.save(r1);
+//        ARRAY_STORAGE.update(r1);
+//        ARRAY_STORAGE.save(r2);
+//        ARRAY_STORAGE.update(r2);
+//        printAll();
+//        System.out.println("Size: " + ARRAY_STORAGE.size());
+////        ARRAY_STORAGE.clear();
+//        ARRAY_STORAGE.delete(r2.getUuid());
+//        System.out.println("Size: " + ARRAY_STORAGE.size());
+//        printAll();
 
         // save in wrong order
         ARRAY_STORAGE.save(r3);
@@ -28,18 +41,18 @@ public class MainTestArrayStorage {
 
         // test update
         ARRAY_STORAGE.update(r3);
-        ARRAY_STORAGE.update(r6);
+//        ARRAY_STORAGE.update(r6);
 
         printAll();
         System.out.println("Size: " + ARRAY_STORAGE.size());
 
         // test get
         System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
-        System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
+//        System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
 
         // test delete
         ARRAY_STORAGE.delete(r5.getUuid());
-        ARRAY_STORAGE.delete(r6.getUuid());
+//        ARRAY_STORAGE.delete(r6.getUuid());
         printAll();
         System.out.println("Size: " + ARRAY_STORAGE.size());
 
@@ -54,4 +67,5 @@ public class MainTestArrayStorage {
             System.out.println(r);
         }
     }
+
 }

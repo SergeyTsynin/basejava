@@ -10,7 +10,7 @@ import java.util.Arrays;
 /**
  * Array based storage for Resumes
  */
-public abstract class AbstractArrayStorage implements Storage {
+public abstract class AbstractArrayStorage extends AbstractStorage {
     protected static final int STORAGE_LIMIT = 10_000;
 
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
@@ -42,26 +42,6 @@ public abstract class AbstractArrayStorage implements Storage {
         }
     }
 
-    public Resume get(String uuid) {
-        int key = indexOfResume(uuid);
-        if (key > -1) {
-            return storage[key];
-        } else {
-            throw new NotExistStorageException(uuid);
-        }
-    }
-
-    public void delete(String uuid) {
-        int key = indexOfResume(uuid);
-        if (key > -1) {
-            removeResume(key);
-            storage[lastIndex - 1] = null;
-            lastIndex--;
-        } else {
-            throw new NotExistStorageException(uuid);
-        }
-    }
-
     /**
      * @return array, contains only Resumes in storage (without null)
      */
@@ -73,7 +53,15 @@ public abstract class AbstractArrayStorage implements Storage {
         return lastIndex;
     }
 
-    protected abstract int indexOfResume(String uuid);
+    protected Resume getRoutine(int key) {
+        return storage[key];
+    }
+
+    protected void deleteRoutine(int key) {
+        removeResume(key);
+        storage[lastIndex - 1] = null;
+        lastIndex--;
+    }
 
     protected abstract void insertResume(Resume r, int insertPoint);
 
