@@ -6,18 +6,17 @@ import model.Resume;
 public abstract class AbstractStorage implements Storage {
 
     public Resume get(String uuid) {
-        int key = indexOfResume(uuid);
-        if (key > -1) {
-            return getRoutine(key);
-        } else {
-            throw new NotExistStorageException(uuid);
-        }
+        return getRoutine(indexOfResumeIfExists(uuid));
     }
 
     public void delete(String uuid) {
+        deleteRoutine(indexOfResumeIfExists(uuid));
+    }
+
+    private int indexOfResumeIfExists(String uuid) {
         int key = indexOfResume(uuid);
         if (key > -1) {
-            deleteRoutine(key);
+            return key;
         } else {
             throw new NotExistStorageException(uuid);
         }

@@ -43,6 +43,7 @@ public class ListStorageTest {
         storage.clear();
         assertSize(0);
     }
+
     @Test
     public void update() {
         Resume updatedResume = new Resume(UUID_1);

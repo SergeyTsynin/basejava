@@ -13,12 +13,12 @@ import java.util.ArrayList;
 public class ListStorage extends AbstractStorage {
     private ArrayList<Resume> storage = new ArrayList<>();
 
-    @Override  //ok
+    @Override
     public void clear() {
         storage.clear();
     }
 
-    @Override  //ok
+    @Override
     public void update(Resume r) {
         if (storage.contains(r)) {
             storage.set(storage.indexOf(r), r);
@@ -27,7 +27,7 @@ public class ListStorage extends AbstractStorage {
         }
     }
 
-    @Override  //ok
+    @Override
     public void save(Resume r) {
         if (!storage.contains(r)) {
             storage.add(r);
@@ -36,12 +36,12 @@ public class ListStorage extends AbstractStorage {
         }
     }
 
-    @Override  //ok
+    @Override
     public Resume[] getAll() {
         return storage.toArray(new Resume[storage.size()]);
     }
 
-    @Override  //ok
+    @Override
     public int size() {
         return storage.size();
     }
