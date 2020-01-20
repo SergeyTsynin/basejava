@@ -55,6 +55,16 @@ public class ListStorage extends AbstractStorage {
         return -1;
     }
 
+    @Override
+    protected void updateRoutine(Resume r, int key) {
+
+    }
+
+    @Override
+    protected void saveRoutine(Resume r, int key) {
+
+    }
+
     protected Resume getRoutine(int key) {
         return storage.get(key);
     }

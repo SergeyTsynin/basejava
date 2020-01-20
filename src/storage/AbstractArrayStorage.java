@@ -21,26 +21,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         lastIndex = 0;
     }
 
-    public void update(Resume r) {
-        int key = indexOfResume(r.getUuid());
-        if (key > -1) {
-            storage[key] = r;
-        } else {
-            throw new NotExistStorageException(r.getUuid());
-        }
-    }
-
-    public void save(Resume r) {
-        int key = indexOfResume(r.getUuid());
-        if (key > -1) {
-            throw new ExistStorageException(r.getUuid());
-        } else if (lastIndex < STORAGE_LIMIT) {
-            insertResume(r, key);
-            lastIndex++;
-        } else {
-            throw new StorageException("Error: storage is full, resume was not saved", (r.getUuid()));
-        }
-    }
 
     /**
      * @return array, contains only Resumes in storage (without null)
@@ -51,6 +31,19 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     public int size() {
         return lastIndex;
+    }
+
+    protected void updateRoutine(Resume r, int key) {
+        storage[key] = r;
+    }
+
+    protected void saveRoutine(Resume r, int key) {
+        if (lastIndex < STORAGE_LIMIT) {
+            insertResume(r, key);
+            lastIndex++;
+        } else {
+            throw new StorageException("Error: storage is full, resume was not saved", (r.getUuid()));
+        }
     }
 
     protected Resume getRoutine(int key) {
