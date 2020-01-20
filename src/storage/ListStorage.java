@@ -1,17 +1,16 @@
 package storage;
 
-import excepton.ExistStorageException;
-import excepton.NotExistStorageException;
 //import excepton.StorageException;
 import model.Resume;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ArrayList based storage for Resumes
  */
 public class ListStorage extends AbstractStorage {
-    private ArrayList<Resume> storage = new ArrayList<>();
+    private List<Resume> storage = new ArrayList<>();
 
     @Override
     public void clear() {
@@ -28,7 +27,7 @@ public class ListStorage extends AbstractStorage {
         return storage.size();
     }
 
-    protected int indexOfResume(String uuid) {
+    protected Integer indexOfResume(String uuid) {
         for (int i = 0; i < storage.size(); i++) {
             if (storage.get(i).getUuid().equals(uuid)) {
                 return i;
