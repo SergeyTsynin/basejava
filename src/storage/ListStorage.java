@@ -19,24 +19,6 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    public void update(Resume r) {
-        if (storage.contains(r)) {
-            storage.set(storage.indexOf(r), r);
-        } else {
-            throw new NotExistStorageException(r.getUuid());
-        }
-    }
-
-    @Override
-    public void save(Resume r) {
-        if (!storage.contains(r)) {
-            storage.add(r);
-        } else {
-            throw new ExistStorageException(r.getUuid());
-        }
-    }
-
-    @Override
     public Resume[] getAll() {
         return storage.toArray(new Resume[storage.size()]);
     }
@@ -57,12 +39,12 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected void updateRoutine(Resume r, int key) {
-
+        storage.set(key, r);
     }
 
     @Override
     protected void saveRoutine(Resume r, int key) {
-
+        storage.add(r);
     }
 
     protected Resume getRoutine(int key) {
