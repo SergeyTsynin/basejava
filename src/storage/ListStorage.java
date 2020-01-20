@@ -1,6 +1,7 @@
 package storage;
 
 //import excepton.StorageException;
+
 import model.Resume;
 
 import java.util.ArrayList;
@@ -33,24 +34,26 @@ public class ListStorage extends AbstractStorage {
                 return i;
             }
         }
+//TODO        return null;
         return -1;
     }
 
     @Override
-    protected void updateRoutine(Resume r, int key) {
-        storage.set(key, r);
+    protected void updateRoutine(Resume r, Object key) {
+        storage.set((Integer) key, r);
     }
 
     @Override
-    protected void saveRoutine(Resume r, int key) {
+    protected void saveRoutine(Resume r, Object key) {
         storage.add(r);
     }
 
-    protected Resume getRoutine(int key) {
-        return storage.get(key);
+    protected Resume getRoutine(Object key) {
+        return storage.get((Integer) key);
     }
 
-    protected void deleteRoutine(int key) {
-        storage.remove(key);
+    protected void deleteRoutine(Object key) {
+        int delKey = (Integer) key;
+        storage.remove(delKey);
     }
 }

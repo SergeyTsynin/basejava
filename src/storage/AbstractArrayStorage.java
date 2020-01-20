@@ -31,25 +31,25 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return lastIndex;
     }
 
-    protected void updateRoutine(Resume r, int key) {
-        storage[key] = r;
+    protected void updateRoutine(Resume r, Object key) {
+        storage[(Integer) key] = r;
     }
 
-    protected void saveRoutine(Resume r, int key) {
+    protected void saveRoutine(Resume r, Object key) {
         if (lastIndex < STORAGE_LIMIT) {
-            insertResume(r, key);
+            insertResume(r, (Integer) key);
             lastIndex++;
         } else {
             throw new StorageException("Error: storage is full, resume was not saved", (r.getUuid()));
         }
     }
 
-    protected Resume getRoutine(int key) {
-        return storage[key];
+    protected Resume getRoutine(Object key) {
+        return storage[(Integer) key];
     }
 
-    protected void deleteRoutine(int key) {
-        removeResume(key);
+    protected void deleteRoutine(Object key) {
+        removeResume((Integer) key);
         storage[lastIndex - 1] = null;
         lastIndex--;
     }

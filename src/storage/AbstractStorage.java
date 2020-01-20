@@ -22,18 +22,18 @@ public abstract class AbstractStorage implements Storage {
         deleteRoutine(indexOfResumeIfExists(uuid));
     }
 
-    private int indexOfResumeIfExists(String uuid) {
-        int key = indexOfResume(uuid);
-        if (key > -1) {
+    private Object indexOfResumeIfExists(String uuid) {
+        Object key = indexOfResume(uuid);
+        if ((Integer) key > -1) {
             return key;
         } else {
             throw new NotExistStorageException(uuid);
         }
     }
 
-    private int indexForNewResumeIfNotExists(Resume r) {
-        int key = indexOfResume(r.getUuid());
-        if (key > -1) {
+    private Object indexForNewResumeIfNotExists(Resume r) {
+        Object key = indexOfResume(r.getUuid());
+        if ((Integer) key > -1) {
             throw new ExistStorageException(r.getUuid());
         } else {
             return key;
@@ -42,11 +42,11 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract Integer indexOfResume(String uuid);
 
-    protected abstract void updateRoutine(Resume r, int key);
+    protected abstract void updateRoutine(Resume r, Object key);
 
-    protected abstract void saveRoutine(Resume r, int key);
+    protected abstract void saveRoutine(Resume r, Object key);
 
-    protected abstract Resume getRoutine(int key);
+    protected abstract Resume getRoutine(Object key);
 
-    protected abstract void deleteRoutine(int key);
+    protected abstract void deleteRoutine(Object key);
 }

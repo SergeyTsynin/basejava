@@ -13,6 +13,7 @@ public class ArrayStorage extends AbstractArrayStorage {
                 return i;
             }
         }
+//TODO       return null;
         return -1;
     }
 
