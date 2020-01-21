@@ -34,8 +34,7 @@ public class ListStorage extends AbstractStorage {
                 return i;
             }
         }
-//TODO        return null;
-        return -1;
+        return null;
     }
 
     @Override
@@ -59,6 +58,6 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected boolean resumeIsExists(Object key) {
-        return (Integer) key > -1;
+        return key != null;
     }
 }

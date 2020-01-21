@@ -40,7 +40,7 @@ public abstract class AbstractStorage implements Storage {
         }
     }
 
-    protected abstract Integer indexOfResume(String uuid);
+    protected abstract Object indexOfResume(String uuid);
 
     protected abstract void updateRoutine(Resume r, Object key);
 
