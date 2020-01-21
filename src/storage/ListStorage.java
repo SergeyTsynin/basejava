@@ -56,4 +56,9 @@ public class ListStorage extends AbstractStorage {
         int delKey = (Integer) key;
         storage.remove(delKey);
     }
+
+    @Override
+    protected boolean resumeIsExists(Object key) {
+        return (Integer) key > -1;
+    }
 }

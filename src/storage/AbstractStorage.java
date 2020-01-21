@@ -24,7 +24,7 @@ public abstract class AbstractStorage implements Storage {
 
     private Object indexOfResumeIfExists(String uuid) {
         Object key = indexOfResume(uuid);
-        if ((Integer) key > -1) {
+        if (resumeIsExists(key)) {
             return key;
         } else {
             throw new NotExistStorageException(uuid);
@@ -33,7 +33,7 @@ public abstract class AbstractStorage implements Storage {
 
     private Object indexForNewResumeIfNotExists(Resume r) {
         Object key = indexOfResume(r.getUuid());
-        if ((Integer) key > -1) {
+        if (resumeIsExists(key)) {
             throw new ExistStorageException(r.getUuid());
         } else {
             return key;
@@ -49,4 +49,7 @@ public abstract class AbstractStorage implements Storage {
     protected abstract Resume getRoutine(Object key);
 
     protected abstract void deleteRoutine(Object key);
+
+    protected abstract boolean resumeIsExists(Object key);
+
 }

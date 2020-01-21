@@ -15,6 +15,7 @@ public class MainCollections {
 
     public static void main(String[] args) {
 
+/*
         Collection<Resume> collection = new ArrayList<>();
         collection.add(RESUME_1);
         collection.add(RESUME_2);
@@ -36,6 +37,28 @@ public class MainCollections {
             }
         }
         System.out.println(collection.toString());
+*/
+        Map<String, Resume> storage = new HashMap<>();
+        storage.put(UUID_1, RESUME_1);
+        storage.put(UUID_2, RESUME_2);
+        storage.put(UUID_3, RESUME_3);
+
+        for (Map.Entry<String, Resume> entry : storage.entrySet()) {
+            if (entry.getValue().equals(RESUME_3)) {
+                System.out.println(entry.getKey());
+                break;
+            }
+//            System.out.println(entry.getValue());
+//            System.out.println(entry.getKey());
+        }
+        System.out.println("null");
+//        if (storage[i].getUuid().equals(uuid)) {
+
+        // Bad!
+//        for (String uuid : storage.keySet()) {
+//            System.out.println(storage.get(uuid));
+//        }
 
     }
+
 }

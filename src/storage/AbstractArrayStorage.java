@@ -54,6 +54,10 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         lastIndex--;
     }
 
+    protected boolean resumeIsExists(Object key) {
+        return (Integer) key > -1;
+    }
+
     protected abstract void insertResume(Resume r, int insertPoint);
 
     protected abstract void removeResume(int removePoint);
