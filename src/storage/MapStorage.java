@@ -27,7 +27,7 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    protected Object indexOfResume(String uuid) {
+    protected Object getSearchKey(String uuid) {
         return uuid;
     }
 
@@ -54,7 +54,7 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean isResumeExists(Object key) {
+    protected boolean isExists(Object key) {
         String s = (String) key;
         return storage.containsKey(s);
     }

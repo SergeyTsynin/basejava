@@ -7,40 +7,40 @@ import model.Resume;
 public abstract class AbstractStorage implements Storage {
 
     public void update(Resume r) {
-        updateRoutine(r, indexOfResumeIfExists(r.getUuid()));
+        updateRoutine(r, getSearchKeyForExistedResume(r.getUuid()));
     }
 
     public void save(Resume r) {
-        saveRoutine(r, indexForNewResumeIfNotExists(r));
+        saveRoutine(r, getSearchKeyForNewResume(r));
     }
 
     public Resume get(String uuid) {
-        return getRoutine(indexOfResumeIfExists(uuid));
+        return getRoutine(getSearchKeyForExistedResume(uuid));
     }
 
     public void delete(String uuid) {
-        deleteRoutine(indexOfResumeIfExists(uuid));
+        deleteRoutine(getSearchKeyForExistedResume(uuid));
     }
 
-    private Object indexOfResumeIfExists(String uuid) {
-        Object key = indexOfResume(uuid);
-        if (isResumeExists(key)) {
+    private Object getSearchKeyForExistedResume(String uuid) {
+        Object key = getSearchKey(uuid);
+        if (isExists(key)) {
             return key;
         } else {
             throw new NotExistStorageException(uuid);
         }
     }
 
-    private Object indexForNewResumeIfNotExists(Resume r) {
-        Object key = indexOfResume(r.getUuid());
-        if (isResumeExists(key)) {
+    private Object getSearchKeyForNewResume(Resume r) {
+        Object key = getSearchKey(r.getUuid());
+        if (isExists(key)) {
             throw new ExistStorageException(r.getUuid());
         } else {
             return key;
         }
     }
 
-    protected abstract Object indexOfResume(String uuid);
+    protected abstract Object getSearchKey(String uuid);
 
     protected abstract void updateRoutine(Resume r, Object key);
 
@@ -50,6 +50,5 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract void deleteRoutine(Object key);
 
-    protected abstract boolean isResumeExists(Object key);
-
+    protected abstract boolean isExists(Object key);
 }

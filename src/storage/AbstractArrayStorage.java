@@ -53,7 +53,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         lastIndex--;
     }
 
-    protected boolean isResumeExists(Object key) {
+    protected boolean isExists(Object key) {
         return (Integer) key > -1;
     }
 
