@@ -9,7 +9,7 @@ import java.util.Map;
  * Map based storage for Resumes
  */
 public class MapStorage extends AbstractStorage {
-    private Map<String, Resume> storage = new HashMap();
+    private Map<String, Resume> storage = new HashMap<>();
 
     @Override
     public void clear() {
@@ -28,13 +28,12 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected Object indexOfResume(String uuid) {
-        return (storage.containsKey(uuid)) ? uuid : null;
+        return uuid;
     }
 
     @Override
     protected void updateRoutine(Resume r, Object key) {
         storage.put((String) key, r);
-//        storage.put(r.getUuid(), r);  // for future, don`t check it!
     }
 
     @Override
@@ -44,16 +43,19 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected Resume getRoutine(Object key) {
-        return storage.get(key);
+        String s = (String) key;
+        return storage.get(s);
     }
 
     @Override
     protected void deleteRoutine(Object key) {
-        storage.remove(key);
+        String s = (String) key;
+        storage.remove(s);
     }
 
     @Override
-    protected boolean resumeIsExists(Object key) {
-        return key != null;
+    protected boolean isResumeExists(Object key) {
+        String s = (String) key;
+        return storage.containsKey(s);
     }
 }

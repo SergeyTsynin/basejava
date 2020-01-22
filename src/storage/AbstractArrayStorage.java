@@ -19,7 +19,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         lastIndex = 0;
     }
 
-
     /**
      * @return array, contains only Resumes in storage (without null)
      */
@@ -54,7 +53,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         lastIndex--;
     }
 
-    protected boolean resumeIsExists(Object key) {
+    protected boolean isResumeExists(Object key) {
         return (Integer) key > -1;
     }
 

@@ -1,7 +1,5 @@
 package storage;
 
-//import excepton.StorageException;
-
 import model.Resume;
 
 import java.util.ArrayList;
@@ -57,7 +55,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean resumeIsExists(Object key) {
+    protected boolean isResumeExists(Object key) {
         return key != null;
     }
 }
