@@ -7,8 +7,8 @@ import java.util.*;
 /**
  * Map based storage for Resumes
  */
-public class MapStorage extends AbstractStorage {
-    private Map<String, Resume> storage = new HashMap<>();
+public abstract class MapStorage extends AbstractStorage {
+    protected Map<String, Resume> storage = new HashMap<>();
 
     @Override
     public void clear() {
@@ -26,11 +26,6 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    protected Object getSearchKey(String uuid) {
-        return uuid;
-    }
-
-    @Override
     protected void updateRoutine(Resume r, Object key) {
         storage.put((String) key, r);
     }
@@ -38,23 +33,5 @@ public class MapStorage extends AbstractStorage {
     @Override
     protected void saveRoutine(Resume r, Object key) {
         storage.put(r.getUuid(), r);
-    }
-
-    @Override
-    protected Resume getRoutine(Object key) {
-        String s = (String) key;
-        return storage.get(s);
-    }
-
-    @Override
-    protected void deleteRoutine(Object key) {
-        String s = (String) key;
-        storage.remove(s);
-    }
-
-    @Override
-    protected boolean isExists(Object key) {
-        String s = (String) key;
-        return storage.containsKey(s);
     }
 }

@@ -4,31 +4,29 @@ import model.Resume;
 
 /**
  * Map based storage for Resumes
- * Search key - Resume
+ * Search key - uuid
  */
-public class MapResumeStorage extends MapStorage {
+public class MapUuidStorage extends MapStorage {
     @Override
     protected Object getSearchKey(String uuid) {
-        return storage.get(uuid);
-    }
-
-    @Override
-    protected void updateRoutine(Resume r, Object key) {
-        storage.put(r.getUuid(), r);
+        return uuid;
     }
 
     @Override
     protected Resume getRoutine(Object key) {
-        return (Resume) key;
+        String s = (String) key;
+        return storage.get(s);
     }
 
     @Override
     protected void deleteRoutine(Object key) {
-        storage.remove(((Resume) key).getUuid());
+        String s = (String) key;
+        storage.remove(s);
     }
 
     @Override
     protected boolean isExists(Object key) {
-        return key != null;
+        String s = (String) key;
+        return storage.containsKey(s);
     }
 }
