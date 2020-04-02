@@ -4,6 +4,9 @@ import excepton.ExistStorageException;
 import excepton.NotExistStorageException;
 import model.Resume;
 
+import java.util.Collections;
+import java.util.List;
+
 public abstract class AbstractStorage implements Storage {
 
     public void update(Resume r) {
@@ -51,4 +54,13 @@ public abstract class AbstractStorage implements Storage {
     protected abstract void deleteRoutine(Object key);
 
     protected abstract boolean isExists(Object key);
+
+    protected abstract List<Resume> doGetAll();
+
+    @Override
+    public List<Resume> getAllSorted() {
+        List<Resume> list = doGetAll();
+        Collections.sort(list);
+        return list;
+    }
 }
