@@ -13,6 +13,11 @@ public class MapUuidStorage extends MapStorage {
     }
 
     @Override
+    protected void updateRoutine(Resume r, Object key) {
+        storage.put((String) key, r);
+    }
+
+    @Override
     protected Resume getRoutine(Object key) {
         String s = (String) key;
         return storage.get(s);

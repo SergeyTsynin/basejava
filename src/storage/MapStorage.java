@@ -26,11 +26,6 @@ public abstract class MapStorage extends AbstractStorage {
     }
 
     @Override
-    protected void updateRoutine(Resume r, Object key) {
-        storage.put((String) key, r);
-    }
-
-    @Override
     protected void saveRoutine(Resume r, Object key) {
         storage.put(r.getUuid(), r);
     }
