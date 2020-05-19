@@ -1,5 +1,6 @@
 import model.Organization;
 import model.OrganizationName;
+import model.OrganizationSection;
 import model.Resume;
 
 import java.util.Arrays;
@@ -34,10 +35,6 @@ public class ResumeTestData {
 //        );
 
         OrganizationName orgname1 = new OrganizationName("Java Online Projects", "http://javaops.ru/");
-        OrganizationName orgname2 = new OrganizationName("Wrike", "https://www.wrike.com/");
-        OrganizationName orgname3 = new OrganizationName("Coursera", "https://www.coursera.org/course/progfun");
-        OrganizationName orgname4 = new OrganizationName("Luxoft", "http://www.luxoft-training.ru/training/catalog/course.html?ID=22366");
-//        System.out.println(orgname1);
         Organization org1 = new Organization(
                 "Автор проекта.",
                 "Создание, организация и проведение Java онлайн проектов и стажировок.",
@@ -45,10 +42,23 @@ public class ResumeTestData {
                 new Date(113, 9, 1),
                 new Date()
         );
-        System.out.println(org1);
+        OrganizationName orgname2 = new OrganizationName("Wrike", "https://www.wrike.com/");
+        Organization org2 = new Organization(
+                "Старший разработчик (backend)",
+                "Проектирование и разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO.",
+                orgname2,
+                new Date(114,9,1),
+                new Date(116,0,1)
+        );
+//        OrganizationSection os1 = new OrganizationSection(Arrays.asList(org1,org2));
+        kislin.setExperience(Arrays.asList(org1,org2));
+        OrganizationName orgname3 = new OrganizationName("Coursera", "https://www.coursera.org/course/progfun");
+        OrganizationName orgname4 = new OrganizationName("Luxoft", "http://www.luxoft-training.ru/training/catalog/course.html?ID=22366");
+//        System.out.println(org1);
+//        System.out.println(org2);
 
 //        System.out.println(kislin);
-//        System.out.println(kislin.getAll());
+        System.out.println(kislin.getAll());
 
     }
 }
