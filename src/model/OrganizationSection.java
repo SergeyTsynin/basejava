@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 
 public class OrganizationSection extends Section {
-    List<Organization> organization;
+    private List<Organization> organization;
 
     OrganizationSection(List<Organization> organization) {
         this.organization = organization;

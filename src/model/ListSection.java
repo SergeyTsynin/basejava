@@ -5,12 +5,21 @@ import java.util.List;
 public class ListSection extends Section {
     private List<String> content;
 
-    public ListSection(List<String> content) {
+    ListSection(List<String> content) {
         this.content = content;
     }
 
     public List<String> getContent() {
         return content;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (String key : content) {
+            result.append(key).append("\r\n");
+        }
+        return String.valueOf(result);
     }
 
     @Override

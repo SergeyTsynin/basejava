@@ -1,8 +1,6 @@
 package model;
 
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Initial resume class
@@ -64,6 +62,11 @@ public class Resume implements Comparable<Resume> {
         for (Map.Entry<ContactType, String> pair : contact.entrySet()) {
             result.append(pair.getKey().getTitle()).append(" ").append(pair.getValue()).append("\r\n");
         }
+        result.append("\r\n");
+        for (Map.Entry<SectionType, Section> pair : section.entrySet()) {
+            result.append(pair.getKey().getTitle()).append("\r\n");
+            result.append(pair.getValue()).append("\r\n\r\n");
+        }
         return String.valueOf(result);
     }
 
@@ -95,4 +98,27 @@ public class Resume implements Comparable<Resume> {
         contact.put(ContactType.HOMEPAGE, homepage);
     }
 
+    public void setObjective(String objective) {
+        section.put(SectionType.OBJECTIVE, new TextSection(objective));
+    }
+
+    public void setPersonal(String personal) {
+        section.put(SectionType.PERSONAL, new TextSection(personal));
+    }
+
+    public void setAchievement(List<String> achievement) {
+        section.put(SectionType.ACHIEVEMENT, new ListSection(achievement));
+    }
+
+    public void setQualifications(List<String> qualifications) {
+        section.put(SectionType.QUALIFICATIONS, new ListSection(qualifications));
+    }
+
+    public void setExperience(List<Organization> experience) {
+        section.put(SectionType.EXPERIENCE, new OrganizationSection(experience));
+    }
+
+    public void setEducation(List<Organization> education) {
+        section.put(SectionType.EDUCATION, new OrganizationSection(education));
+    }
 }
