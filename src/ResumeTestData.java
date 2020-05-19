@@ -1,7 +1,9 @@
+import model.Organization;
 import model.OrganizationName;
 import model.Resume;
 
 import java.util.Arrays;
+import java.util.Date;
 
 public class ResumeTestData {
     public static void main(String[] args) {
@@ -31,10 +33,18 @@ public class ResumeTestData {
 //                )
 //        );
 
-        OrganizationName org1 = new OrganizationName("Java Online Projects","http://javaops.ru/");
-        OrganizationName org2 = new OrganizationName("Wrike","https://www.wrike.com/");
-        OrganizationName org3 = new OrganizationName("Coursera","https://www.coursera.org/course/progfun");
-        OrganizationName org4 = new OrganizationName("Luxoft","http://www.luxoft-training.ru/training/catalog/course.html?ID=22366");
+        OrganizationName orgname1 = new OrganizationName("Java Online Projects", "http://javaops.ru/");
+        OrganizationName orgname2 = new OrganizationName("Wrike", "https://www.wrike.com/");
+        OrganizationName orgname3 = new OrganizationName("Coursera", "https://www.coursera.org/course/progfun");
+        OrganizationName orgname4 = new OrganizationName("Luxoft", "http://www.luxoft-training.ru/training/catalog/course.html?ID=22366");
+//        System.out.println(orgname1);
+        Organization org1 = new Organization(
+                "Автор проекта.",
+                "Создание, организация и проведение Java онлайн проектов и стажировок.",
+                orgname1,
+                new Date(113, 9, 1),
+                new Date()
+        );
         System.out.println(org1);
 
 //        System.out.println(kislin);
