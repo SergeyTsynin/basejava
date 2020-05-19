@@ -1,15 +1,13 @@
 package model;
 
-import java.util.List;
+public class TextSection extends Section {
+    private String content;
 
-public class ListSection extends Section {
-    private List<String> content;
-
-    public ListSection(List<String> content) {
+    public TextSection(String content) {
         this.content = content;
     }
 
-    public List<String> getContent() {
+    public String getContent() {
         return content;
     }
 
@@ -18,7 +16,7 @@ public class ListSection extends Section {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ListSection that = (ListSection) o;
+        TextSection that = (TextSection) o;
 
         return content.equals(that.content);
     }
