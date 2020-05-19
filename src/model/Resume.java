@@ -15,6 +15,7 @@ public class Resume implements Comparable<Resume> {
     private final String fullName;
 
     private final Map<ContactType, String> contact = new EnumMap<>(ContactType.class);
+    private final Map<SectionType, Section> section = new EnumMap<>(SectionType.class);
 
     public Resume(String fullName) {
         this(UUID.randomUUID().toString(), fullName);
@@ -58,6 +59,14 @@ public class Resume implements Comparable<Resume> {
         return fullNameCompare == 0 ? uuid.compareTo(resume.uuid) : fullNameCompare;
     }
 
+    public String getAll() {
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<ContactType, String> pair : contact.entrySet()) {
+            result.append(pair.getKey().getTitle()).append(" ").append(pair.getValue()).append("\r\n");
+        }
+        return String.valueOf(result);
+    }
+
     public void setPhone(String phone) {
         contact.put(ContactType.PHONE, phone);
     }
@@ -86,11 +95,4 @@ public class Resume implements Comparable<Resume> {
         contact.put(ContactType.HOMEPAGE, homepage);
     }
 
-    public String getAll() {
-        StringBuilder result = new StringBuilder();
-        for (Map.Entry<ContactType, String> pair : contact.entrySet()) {
-            result.append(pair.getKey().getTitle()).append(" ").append(pair.getValue()).append("\r\n");
-        }
-        return String.valueOf(result);
-    }
 }
