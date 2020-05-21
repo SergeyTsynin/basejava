@@ -1,5 +1,6 @@
 import model.*;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -40,16 +41,16 @@ public class ResumeTestData {
                 "Автор проекта.",
                 "Создание, организация и проведение Java онлайн проектов и стажировок.",
                 orgname1,
-                new Date(113, 9, 1),
-                new Date()
+                LocalDate.of(2013, 10, 1),
+                LocalDate.now()
         );
         OrganizationName orgname2 = new OrganizationName("Wrike", "https://www.wrike.com/");
         Organization org2 = new Organization(
                 "Старший разработчик (backend)",
                 "Проектирование и разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO.",
                 orgname2,
-                new Date(114, 9, 1),
-                new Date(116, 0, 1)
+                LocalDate.of(2014, 10, 1),
+                LocalDate.of(2016, 1, 1)
         );
         kislin.setSection(SectionType.EXPERIENCE, new OrganizationsSection(Arrays.asList(org1, org2)));
 
@@ -58,16 +59,16 @@ public class ResumeTestData {
                 "\"Functional Programming Principles in Scala\" by Martin Odersky",
                 "",
                 orgname1,
-                new Date(113, 2, 1),
-                new Date(113, 4, 1)
+                LocalDate.of(2013, 3, 1),
+                LocalDate.of(2013, 5, 1)
         );
         OrganizationName orgname4 = new OrganizationName("Luxoft", "http://www.luxoft-training.ru/training/catalog/course.html?ID=22366");
         Organization org4 = new Organization(
                 "Курс \"Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.\" ",
                 "",
                 orgname1,
-                new Date(111, 2, 1),
-                new Date(111, 3, 1)
+                LocalDate.of(2011, 3, 1),
+                LocalDate.of(2011, 4, 1)
         );
         kislin.setSection(SectionType.EDUCATION, new OrganizationsSection(Arrays.asList(org3, org4)));
 

@@ -21,10 +21,9 @@ public class Organization {
 
     @Override
     public String toString() {
-        SimpleDateFormat formatDate = new SimpleDateFormat("MM/yyyy");
         return NAME + "\r\n" +
-                formatDate.format(DATE_BEGIN) + " - " +
-                formatDate.format(DATE_END) + "\r\n" +
+                DATE_BEGIN + " - " +
+                DATE_END + "\r\n" +
                 TITLE + "\r\n" +
                 DESCRIPTION;
     }
