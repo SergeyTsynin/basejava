@@ -1,6 +1,5 @@
 package model;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -11,7 +10,7 @@ public class Organization {
     private final LocalDate DATE_END;
     private final OrganizationName NAME;
 
-    public Organization(String title, String description, OrganizationName name, LocalDate dateBegin, LocalDate dateEnd) {
+    public Organization(OrganizationName name, String title, String description, LocalDate dateBegin, LocalDate dateEnd) {
         Objects.requireNonNull(this.TITLE = title);
         Objects.requireNonNull(this.DESCRIPTION = description);
         Objects.requireNonNull(this.NAME = name);
@@ -21,7 +20,8 @@ public class Organization {
 
     @Override
     public String toString() {
-        return NAME + "\r\n" +
+        return "\r\n" +
+                NAME + "\r\n" +
                 DATE_BEGIN + " - " +
                 DATE_END + "\r\n" +
                 TITLE + "\r\n" +
