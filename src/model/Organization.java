@@ -2,29 +2,30 @@ package model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class Organization {
-    private String title;
-    private String description;
-    private Date dateBegin;
-    private Date dateEnd;
-    private OrganizationName name;
+    private final String TITLE;
+    private final String DESCRIPTION;
+    private final Date DATE_BEGIN;
+    private final Date DATE_END;
+    private final OrganizationName NAME;
 
     public Organization(String title, String description, OrganizationName name, Date dateBegin, Date dateEnd) {
-        this.title = title;
-        this.description = description;
-        this.name = name;
-        this.dateBegin = dateBegin;
-        this.dateEnd = dateEnd;
+        Objects.requireNonNull(this.TITLE = title);
+        Objects.requireNonNull(this.DESCRIPTION = description);
+        Objects.requireNonNull(this.NAME = name);
+        Objects.requireNonNull(this.DATE_BEGIN = dateBegin);
+        Objects.requireNonNull(this.DATE_END = dateEnd);
     }
 
     @Override
     public String toString() {
         SimpleDateFormat formatDate = new SimpleDateFormat("MM/yyyy");
-        return name + "\r\n" +
-                formatDate.format(dateBegin) + " - " +
-                formatDate.format(dateEnd) + "\r\n" +
-                title + "\r\n" +
-                description;
+        return NAME + "\r\n" +
+                formatDate.format(DATE_BEGIN) + " - " +
+                formatDate.format(DATE_END) + "\r\n" +
+                TITLE + "\r\n" +
+                DESCRIPTION;
     }
 }

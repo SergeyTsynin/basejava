@@ -1,19 +1,21 @@
 package model;
 
-public class TextSection extends Section {
-    private String content;
+import java.util.Objects;
 
-    TextSection(String content) {
-        this.content = content;
+public class TextSection extends Section {
+    private final String CONTENT;
+
+    public TextSection(String content) {
+        Objects.requireNonNull(this.CONTENT = content);
     }
 
     public String getContent() {
-        return content;
+        return CONTENT;
     }
 
     @Override
     public String toString() {
-        return content;
+        return CONTENT;
     }
 
     @Override
@@ -23,11 +25,11 @@ public class TextSection extends Section {
 
         TextSection that = (TextSection) o;
 
-        return content.equals(that.content);
+        return CONTENT.equals(that.CONTENT);
     }
 
     @Override
     public int hashCode() {
-        return content.hashCode();
+        return CONTENT.hashCode();
     }
 }

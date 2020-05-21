@@ -1,18 +1,19 @@
 package model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class OrganizationSection extends Section {
-    private List<Organization> organization;
+    private final List<Organization> ORGANIZATION;
 
-    OrganizationSection(List<Organization> organization) {
-        this.organization = organization;
+    public OrganizationSection(List<Organization> organization) {
+        Objects.requireNonNull(this.ORGANIZATION = organization);
     }
 
     @Override
     public String toString() {
         return "OrganizationSection{" +
-                "organization=" + organization +
+                "ORGANIZATION=" + ORGANIZATION +
                 '}';
     }
 
@@ -23,11 +24,11 @@ public class OrganizationSection extends Section {
 
         OrganizationSection that = (OrganizationSection) o;
 
-        return organization.equals(that.organization);
+        return ORGANIZATION.equals(that.ORGANIZATION);
     }
 
     @Override
     public int hashCode() {
-        return organization.hashCode();
+        return ORGANIZATION.hashCode();
     }
 }

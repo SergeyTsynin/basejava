@@ -1,22 +1,23 @@
 package model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ListSection extends Section {
-    private List<String> content;
+    private final List<String> CONTENT;
 
-    ListSection(List<String> content) {
-        this.content = content;
+    public ListSection(List<String> content) {
+        Objects.requireNonNull(this.CONTENT = content);
     }
 
     public List<String> getContent() {
-        return content;
+        return CONTENT;
     }
 
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (String key : content) {
+        for (String key : CONTENT) {
             result.append(key).append("\r\n");
         }
         return String.valueOf(result);
@@ -29,11 +30,11 @@ public class ListSection extends Section {
 
         ListSection that = (ListSection) o;
 
-        return content.equals(that.content);
+        return CONTENT.equals(that.CONTENT);
     }
 
     @Override
     public int hashCode() {
-        return content.hashCode();
+        return CONTENT.hashCode();
     }
 }
