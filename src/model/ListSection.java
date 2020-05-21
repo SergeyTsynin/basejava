@@ -20,7 +20,7 @@ public class ListSection extends Section {
         for (String key : CONTENT) {
             result.append(key).append("\r\n");
         }
-        return String.valueOf(result);
+        return result.toString();
     }
 
     @Override
