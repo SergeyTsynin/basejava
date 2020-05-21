@@ -51,7 +51,7 @@ public class ResumeTestData {
                 new Date(114, 9, 1),
                 new Date(116, 0, 1)
         );
-        kislin.setSection(SectionType.EXPERIENCE, new OrganizationSection(Arrays.asList(org1, org2)));
+        kislin.setSection(SectionType.EXPERIENCE, new OrganizationsSection(Arrays.asList(org1, org2)));
 
         OrganizationName orgname3 = new OrganizationName("Coursera", "https://www.coursera.org/course/progfun");
         Organization org3 = new Organization(
@@ -69,7 +69,7 @@ public class ResumeTestData {
                 new Date(111, 2, 1),
                 new Date(111, 3, 1)
         );
-        kislin.setSection(SectionType.EDUCATION, new OrganizationSection(Arrays.asList(org3, org4)));
+        kislin.setSection(SectionType.EDUCATION, new OrganizationsSection(Arrays.asList(org3, org4)));
 
         System.out.println(kislin);
         System.out.println(kislin.getAll());
