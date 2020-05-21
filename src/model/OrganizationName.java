@@ -23,4 +23,22 @@ public class OrganizationName {
     public String toString() {
         return NAME + ", URL='" + URL + '\'';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OrganizationName that = (OrganizationName) o;
+
+        if (!NAME.equals(that.NAME)) return false;
+        return URL.equals(that.URL);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = NAME.hashCode();
+        result = 31 * result + URL.hashCode();
+        return result;
+    }
 }
