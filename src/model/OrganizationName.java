@@ -3,16 +3,16 @@ package model;
 import java.util.Objects;
 
 public class OrganizationName {
-    private final String NAME;
+    private final String name;
     private final String URL;
 
     public OrganizationName(String name, String url) {
-        Objects.requireNonNull(this.NAME = name);
+        Objects.requireNonNull(this.name = name);
         this.URL = url;
     }
 
     public String getName() {
-        return NAME;
+        return name;
     }
 
     public String getUrl() {
@@ -21,7 +21,7 @@ public class OrganizationName {
 
     @Override
     public String toString() {
-        return NAME + ", URL='" + URL + '\'';
+        return name + ", URL='" + URL + '\'';
     }
 
     @Override
@@ -31,13 +31,13 @@ public class OrganizationName {
 
         OrganizationName that = (OrganizationName) o;
 
-        if (!NAME.equals(that.NAME)) return false;
+        if (!name.equals(that.name)) return false;
         return Objects.equals(URL, that.URL);
     }
 
     @Override
     public int hashCode() {
-        int result = NAME.hashCode();
+        int result = name.hashCode();
         result = 31 * result + (URL != null ? URL.hashCode() : 0);
         return result;
     }
