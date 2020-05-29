@@ -7,6 +7,14 @@ import java.util.Arrays;
 
 public class ResumeTestData {
     public static void main(String[] args) {
+        Resume test = getTestKislinResume();
+
+        System.out.println(test);
+        System.out.println(test.getAll());
+
+    }
+
+    public static Resume getTestKislinResume(){
         Resume kislin = new Resume("uuid1", "Григорий Кислин");
         kislin.setContact(ContactType.PHONE, "+7(921) 855-0482");
         kislin.setContact(ContactType.SKYPE, "skype:grigory.kislin");
@@ -149,13 +157,6 @@ public class ResumeTestData {
                         LocalDate.of(1987, 6, 1)
                 )
         )));
-
-        System.out.println(kislin);
-        System.out.println(kislin.getAll());
-
-    }
-
-    public static Resume getTestKislinResume(){
-        return new Resume("uuid1", "Григорий Кислин");
+        return kislin;
     }
 }
