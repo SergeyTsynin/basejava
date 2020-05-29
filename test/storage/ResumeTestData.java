@@ -95,7 +95,9 @@ public class ResumeTestData {
                         LocalDate.of(2005, 1, 1)
                 )
         )));
-
+        OrganizationName notDoubledOrganizationName = new OrganizationName(
+                "Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики",
+                "http://www.ifmo.ru/");
         kislin.setSection(SectionType.EDUCATION, new OrganizationsSection(Arrays.asList(
                 new Organization(
                         new OrganizationName("Coursera", "https://www.coursera.org/course/progfun"),
@@ -126,14 +128,14 @@ public class ResumeTestData {
                         LocalDate.of(1998, 3, 1)
                 ),
                 new Organization(
-                        new OrganizationName("Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "http://www.ifmo.ru/"),
+                        notDoubledOrganizationName,
                         "Аспирантура (программист С, С++)",
                         "",
                         LocalDate.of(1993, 9, 1),
                         LocalDate.of(1996, 7, 1)
                 ),
                 new Organization(
-                        new OrganizationName("Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "http://www.ifmo.ru/"),
+                        notDoubledOrganizationName,
                         "Инженер (программист Fortran, C)",
                         "",
                         LocalDate.of(1987, 9, 1),
