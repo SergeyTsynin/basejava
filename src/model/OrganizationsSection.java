@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class OrganizationsSection extends Section {
-    private final List<Organization> ORGANIZATIONS;
+    private final List<Organization> organizations;
 
     public OrganizationsSection(List<Organization> organizations) {
-        Objects.requireNonNull(this.ORGANIZATIONS = organizations);
+        Objects.requireNonNull(this.organizations = organizations);
     }
 
     @Override
     public String toString() {
         return "OrganizationsSection{" +
-                "ORGANIZATIONS=" + ORGANIZATIONS +
+                "organizations=" + organizations +
                 '}';
     }
 
@@ -24,11 +24,11 @@ public class OrganizationsSection extends Section {
 
         OrganizationsSection that = (OrganizationsSection) o;
 
-        return ORGANIZATIONS.equals(that.ORGANIZATIONS);
+        return organizations.equals(that.organizations);
     }
 
     @Override
     public int hashCode() {
-        return ORGANIZATIONS.hashCode();
+        return organizations.hashCode();
     }
 }
