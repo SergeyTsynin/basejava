@@ -12,7 +12,7 @@ public class Organization {
 
     public Organization(OrganizationName name, String title, String description, LocalDate dateBegin, LocalDate dateEnd) {
         Objects.requireNonNull(this.TITLE = title);
-        Objects.requireNonNull(this.DESCRIPTION = description);
+        this.DESCRIPTION = description;
         Objects.requireNonNull(this.NAME = name);
         Objects.requireNonNull(this.DATE_BEGIN = dateBegin);
         Objects.requireNonNull(this.DATE_END = dateEnd);
@@ -36,7 +36,7 @@ public class Organization {
         Organization that = (Organization) o;
 
         if (!TITLE.equals(that.TITLE)) return false;
-        if (!DESCRIPTION.equals(that.DESCRIPTION)) return false;
+        if (!Objects.equals(DESCRIPTION, that.DESCRIPTION)) return false;
         if (!DATE_BEGIN.equals(that.DATE_BEGIN)) return false;
         if (!DATE_END.equals(that.DATE_END)) return false;
         return NAME.equals(that.NAME);
@@ -45,7 +45,7 @@ public class Organization {
     @Override
     public int hashCode() {
         int result = TITLE.hashCode();
-        result = 31 * result + DESCRIPTION.hashCode();
+        result = 31 * result + (DESCRIPTION != null ? DESCRIPTION.hashCode() : 0);
         result = 31 * result + DATE_BEGIN.hashCode();
         result = 31 * result + DATE_END.hashCode();
         result = 31 * result + NAME.hashCode();

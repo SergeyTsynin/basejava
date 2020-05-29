@@ -8,7 +8,7 @@ public class OrganizationName {
 
     public OrganizationName(String name, String url) {
         Objects.requireNonNull(this.NAME = name);
-        Objects.requireNonNull(this.URL = url);
+        this.URL = url;
     }
 
     public String getName() {
@@ -32,13 +32,13 @@ public class OrganizationName {
         OrganizationName that = (OrganizationName) o;
 
         if (!NAME.equals(that.NAME)) return false;
-        return URL.equals(that.URL);
+        return Objects.equals(URL, that.URL);
     }
 
     @Override
     public int hashCode() {
         int result = NAME.hashCode();
-        result = 31 * result + URL.hashCode();
+        result = 31 * result + (URL != null ? URL.hashCode() : 0);
         return result;
     }
 }
