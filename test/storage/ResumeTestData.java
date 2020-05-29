@@ -154,4 +154,8 @@ public class ResumeTestData {
         System.out.println(kislin.getAll());
 
     }
+
+    public static Resume getTestKislinResume(){
+        return new Resume("uuid1", "Григорий Кислин");
+    }
 }
