@@ -7,7 +7,7 @@ import model.Resume;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class AbstractStorage implements Storage {
+public abstract class AbstractStorage<SK> implements Storage {
 
     public void update(Resume r) {
         updateRoutine(r, getSearchKeyForExistedResume(r.getUuid()));
@@ -25,8 +25,8 @@ public abstract class AbstractStorage implements Storage {
         deleteRoutine(getSearchKeyForExistedResume(uuid));
     }
 
-    private Object getSearchKeyForExistedResume(String uuid) {
-        Object key = getSearchKey(uuid);
+    private SK getSearchKeyForExistedResume(String uuid) {
+        SK key = getSearchKey(uuid);
         if (isExists(key)) {
             return key;
         } else {
@@ -34,8 +34,8 @@ public abstract class AbstractStorage implements Storage {
         }
     }
 
-    private Object getSearchKeyForNewResume(Resume r) {
-        Object key = getSearchKey(r.getUuid());
+    private SK getSearchKeyForNewResume(Resume r) {
+        SK key = getSearchKey(r.getUuid());
         if (isExists(key)) {
             throw new ExistStorageException(r.getUuid());
         } else {
@@ -43,17 +43,17 @@ public abstract class AbstractStorage implements Storage {
         }
     }
 
-    protected abstract Object getSearchKey(String uuid);
+    protected abstract SK getSearchKey(String uuid);
 
-    protected abstract void updateRoutine(Resume r, Object key);
+    protected abstract void updateRoutine(Resume r, SK key);
 
-    protected abstract void saveRoutine(Resume r, Object key);
+    protected abstract void saveRoutine(Resume r, SK key);
 
-    protected abstract Resume getRoutine(Object key);
+    protected abstract Resume getRoutine(SK key);
 
-    protected abstract void deleteRoutine(Object key);
+    protected abstract void deleteRoutine(SK key);
 
-    protected abstract boolean isExists(Object key);
+    protected abstract boolean isExists(SK key);
 
     protected abstract List<Resume> doGetAll();
 
