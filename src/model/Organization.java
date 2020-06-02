@@ -1,31 +1,22 @@
 package model;
 
-import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public class Organization {
-    private final String title;
-    private final String description;
-    private final LocalDate dateBegin;
-    private final LocalDate dateEnd;
     private final OrganizationName name;
+    private final List<WhatDidIDoInThisPlace> whatDidIDoInThisPlace;
 
-    public Organization(OrganizationName name, String title, String description, LocalDate dateBegin, LocalDate dateEnd) {
-        Objects.requireNonNull(this.title = title);
-        this.description = description;
+    public Organization(OrganizationName name, List<WhatDidIDoInThisPlace> whatDidIDoInThisPlace) {
         Objects.requireNonNull(this.name = name);
-        Objects.requireNonNull(this.dateBegin = dateBegin);
-        Objects.requireNonNull(this.dateEnd = dateEnd);
+        Objects.requireNonNull(this.whatDidIDoInThisPlace = whatDidIDoInThisPlace);
     }
 
     @Override
     public String toString() {
         return "\r\n" +
                 name + "\r\n" +
-                dateBegin + " - " +
-                dateEnd + "\r\n" +
-                title + "\r\n" +
-                description;
+                whatDidIDoInThisPlace;
     }
 
     @Override
@@ -35,20 +26,14 @@ public class Organization {
 
         Organization that = (Organization) o;
 
-        if (!title.equals(that.title)) return false;
-        if (!Objects.equals(description, that.description)) return false;
-        if (!dateBegin.equals(that.dateBegin)) return false;
-        if (!dateEnd.equals(that.dateEnd)) return false;
-        return name.equals(that.name);
+        if (!name.equals(that.name)) return false;
+        return whatDidIDoInThisPlace.equals(that.whatDidIDoInThisPlace);
     }
 
     @Override
     public int hashCode() {
-        int result = title.hashCode();
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + dateBegin.hashCode();
-        result = 31 * result + dateEnd.hashCode();
-        result = 31 * result + name.hashCode();
+        int result = name.hashCode();
+        result = 31 * result + whatDidIDoInThisPlace.hashCode();
         return result;
     }
 }
