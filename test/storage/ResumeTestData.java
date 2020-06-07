@@ -307,8 +307,8 @@ public class ResumeTestData {
                                 new WhatDidIDoInThisPlace(
                                         "Закончила с отличием",
                                         null,
-                                        dates[1],
-                                        dates[0]
+                                        dates[5],
+                                        dates[4]
                                 )))
                 ),
                 new Organization(
@@ -317,8 +317,8 @@ public class ResumeTestData {
                                 new WhatDidIDoInThisPlace(
                                         "Выгнали за неуспеваемость",
                                         null,
-                                        dates[3],
-                                        dates[2]
+                                        dates[7],
+                                        dates[6]
                                 )))
                 )
         )));
