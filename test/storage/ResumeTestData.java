@@ -3,17 +3,14 @@ package storage;
 import model.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 public class ResumeTestData {
     public static void main(String[] args) {
-        Resume test = getTestKislinResume();
-
+//        Resume test = getTestKislinResume();
+        Resume test = getFakeResume();
         System.out.println(test);
         System.out.println(test.getAll());
-
     }
 
     private static Resume getTestKislinResume() {
@@ -201,5 +198,265 @@ public class ResumeTestData {
                 )
         )));
         return kislin;
+    }
+
+    private static Resume getFakeResume() {
+
+        final Random rnd = new Random();
+        String[] firstName = new String[]{"Марина", "Светлана", "Ирина", "Анна"};
+        String[] lastName = new String[]{"Киселёва", "Петрова", "Васильева", "Михайлова"};
+        String fullName = firstName[rnd.nextInt(4)] + " " +
+                lastName[rnd.nextInt(4)];
+
+        Resume guineaPig = new Resume(fullName);
+
+        String convertedFN = transliterate(fullName);
+        int pointPosition = convertedFN.indexOf(".");
+        String fullNameWithoutPoint = convertedFN.substring(0, pointPosition) +
+                convertedFN.substring(pointPosition + 1);
+
+        guineaPig.setContact(ContactType.PHONE, "+7(921) 555-" + (rnd.nextInt(9000) + 1000));
+        guineaPig.setContact(ContactType.SKYPE, "skype:" + convertedFN);
+        guineaPig.setContact(ContactType.EMAIL, "mailto:" + convertedFN + "@gmail.com");
+        guineaPig.setContact(ContactType.LINKEDIN, "https://www.linkedin.com/in/" + fullNameWithoutPoint);
+        guineaPig.setContact(ContactType.GITHUB, "https://github.com/" + fullNameWithoutPoint);
+        guineaPig.setContact(ContactType.STACKOVERFLOW, "https://stackoverflow.com/users/" +
+                (rnd.nextInt(900000) + 100000));
+        guineaPig.setContact(ContactType.HOMEPAGE, "http://" + fullNameWithoutPoint + ".ua/");
+
+        guineaPig.setSection(
+                SectionType.OBJECTIVE, new TextSection(
+                        "Универсальный специалист со случайным номером: " +
+                                (rnd.nextInt(900000) + 100000)));
+
+        List<String> p1 = new ArrayList<>();
+        p1.add("аналитический");
+        p1.add("альтернативный");
+        p1.add("креативный");
+        p1.add("внимательный");
+        p1.add("исключительный");
+        List<String> p2 = new ArrayList<>();
+        p2.add("склад ума");
+        p2.add("подход к решению задач");
+        p2.add("взгляд на жизнь");
+        p2.add("подход к людям");
+        p2.add("идиотизм");
+        StringBuilder personal = new StringBuilder();
+        int count = 5;
+        final int STOP = 3;
+        for (int i = 0; i < STOP; i++) {
+            int pointer1 = rnd.nextInt(count);
+            int pointer2 = rnd.nextInt(count);
+            personal.append(p1.get(pointer1)).append(" ");
+            personal.append(p2.get(pointer2));
+            if (i < STOP - 1) {
+                personal.append(", ");
+            } else {
+                personal.append(".");
+            }
+            p1.remove(pointer1);
+            p2.remove(pointer2);
+            count -= 1;
+        }
+        personal.replace(0, 1, personal.substring(0, 1).toUpperCase());
+        guineaPig.setSection(
+                SectionType.PERSONAL, new TextSection(personal.toString()));
+
+        guineaPig.setSection(SectionType.ACHIEVEMENT, new ListSection(
+                getAchievementList()
+        ));
+
+        guineaPig.setSection(SectionType.QUALIFICATIONS, new ListSection(
+                Arrays.asList(
+                        "JBoss, Tomcat, Jetty, WebLogic, WSO2",
+                        "Version control: Subversion, Git, Mercury, ClearCase, Perforce",
+                        "Office: Excel, Word, Powerpoint"
+                )
+        ));
+
+        LocalDate[] dates = oTemporaOMores();
+        String[] names = getFakeOrganizationName();
+
+        guineaPig.setSection(SectionType.EXPERIENCE, new OrganizationsSection(Arrays.asList(
+                new Organization(
+                        new OrganizationName(names[0], "http://" + names[0] + getFakeOrganizationDomain()),
+                        new ArrayList<>(Collections.singletonList(
+                                new WhatDidIDoInThisPlace(
+                                        getFakeJobTitle(),
+                                        getFakeJobDescription(),
+                                        dates[1],
+                                        dates[0]
+                                )))
+                ),
+                new Organization(
+                        new OrganizationName(names[1], "http://" + names[1] + getFakeOrganizationDomain()),
+                        new ArrayList<>(Collections.singletonList(
+                                new WhatDidIDoInThisPlace(
+                                        getFakeJobTitle(),
+                                        getFakeJobDescription(),
+                                        dates[3],
+                                        dates[2]
+                                )))
+                )
+        )));
+
+        guineaPig.setSection(SectionType.EDUCATION, new OrganizationsSection(Arrays.asList(
+                new Organization(
+                        new OrganizationName("Школа " + names[2], "http://" + names[2] + getFakeOrganizationDomain()),
+                        new ArrayList<>(Collections.singletonList(
+                                new WhatDidIDoInThisPlace(
+                                        "Закончила с отличием",
+                                        null,
+                                        dates[1],
+                                        dates[0]
+                                )))
+                ),
+                new Organization(
+                        new OrganizationName("Ясли " + names[3], "http://" + names[3] + getFakeOrganizationDomain()),
+                        new ArrayList<>(Collections.singletonList(
+                                new WhatDidIDoInThisPlace(
+                                        "Выгнали за неуспеваемость",
+                                        null,
+                                        dates[3],
+                                        dates[2]
+                                )))
+                )
+        )));
+
+        return guineaPig;
+    }
+
+    private static String transliterate(String cyrillic) {
+        cyrillic = cyrillic.toLowerCase();
+        String[] cyr = {" ", "а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я"};
+        String[] lat = {".", "a", "b", "v", "g", "d", "e", "e", "zh", "z", "i", "y", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "h", "ts", "ch", "sh", "sch", "", "i", "", "e", "ju", "ja"};
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < cyrillic.length(); i++) {
+            char ch = cyrillic.charAt(i);
+            int pos = Arrays.asList(cyr).indexOf(String.valueOf(ch));
+            if (pos >= 0) {
+                builder.append(lat[pos]);
+            } else {
+                builder.append(ch);
+            }
+        }
+        return builder.toString();
+    }
+
+    private static LocalDate[] oTemporaOMores() {
+        Random rnd = new Random();
+        LocalDate[] times = new LocalDate[9];
+        times[0] = LocalDate.now();
+        for (int i = 1; i < 8; i += 2) {
+            times[i] = times[i - 1].minusYears(1).minusMonths(rnd.nextInt(12));
+            times[i + 1] = times[i].minusMonths(rnd.nextInt(12));
+        }
+        return times;
+    }
+
+    private static String[] getFakeOrganizationName() {
+        Random rnd = new Random();
+        String[] names = new String[4];
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < names.length; j++) {
+            sb.delete(0, sb.length());
+            int len = rnd.nextInt(8) + 2;
+            for (int i = 0; i < len; i++) {
+                sb.append((char) (rnd.nextInt(122 - 97) + 97 + 1));
+            }
+            names[j] = sb.toString();
+            System.out.println(names[j]);
+        }
+        return names;
+    }
+
+    private static String getFakeOrganizationDomain() {
+        Random rnd = new Random();
+        String[] domain = new String[]{".de", ".ru", ".ua", ".us", ".com", ".au"};
+        return domain[rnd.nextInt(domain.length)];
+    }
+
+    private static String getFakeJobTitle() {
+        List<String> p1 = new ArrayList<>();
+        List<String> p2 = new ArrayList<>();
+        List<String> p3 = new ArrayList<>();
+        p1.add("старший");
+        p1.add("ведущий");
+        p1.add("главный");
+        p1.add("младший");
+        p1.add("никакой");
+        p2.add("мойщик");
+        p2.add("архитектор");
+        p2.add("программист");
+        p2.add("специалист");
+        p2.add("инженер");
+        p3.add("проекта");
+        p3.add("ПО");
+        p3.add("Java");
+        p3.add("баз данных");
+        p3.add("моделей");
+        return stringConstructor(p1, p2, p3, 1);
+    }
+
+    private static String getFakeJobDescription() {
+        List<String> p1 = new ArrayList<>();
+        List<String> p2 = new ArrayList<>();
+        List<String> p3 = new ArrayList<>();
+        p1.add("тестирование");
+        p1.add("отладка");
+        p1.add("внедрение");
+        p1.add("реализация");
+        p1.add("разработка");
+        p1.add("переделка");
+
+        p2.add("информационной");
+        p2.add("мобильной");
+        p2.add("алгоритмической");
+        p2.add("серверной");
+        p2.add("дурацкой");
+        p2.add("необыкновенной");
+
+        p3.add("модели");
+        p3.add("имплементациии");
+        p3.add("статистики");
+        p3.add("интеграции");
+        p3.add("утилизации");
+        p3.add("мультипликации");
+        return stringConstructor(p1, p2, p3, 3);
+    }
+
+    private static String stringConstructor(List<String> l1, List<String> l2, List<String> l3, int len) {
+        StringBuilder result = new StringBuilder();
+        Random rnd = new Random();
+        int count = l1.size();
+        for (int i = 0; i < len; i++) {
+            int pointer1 = rnd.nextInt(count);
+            int pointer2 = rnd.nextInt(count);
+            int pointer3 = rnd.nextInt(count);
+            result.append(l1.get(pointer1)).append(" ");
+            result.append(l2.get(pointer2)).append(" ");
+            result.append(l3.get(pointer3));
+            if (i < len - 1) {
+                result.append(", ");
+            } else {
+                result.append(".");
+            }
+            l1.remove(pointer1);
+            l2.remove(pointer2);
+            l3.remove(pointer3);
+            count -= 1;
+        }
+        result.replace(0, 1, result.substring(0, 1).toUpperCase());
+        return result.toString();
+    }
+
+    private static List<String> getAchievementList() {
+        List<String> result = new ArrayList<>();
+        String[] s = getFakeJobDescription().split(",");
+        for (int i = 0; i < s.length; i++) {
+            s[i] = s[i].trim();
+            result.add(s[i].toUpperCase().charAt(0) + s[i].substring(1));
+        }
+        return result;
     }
 }
