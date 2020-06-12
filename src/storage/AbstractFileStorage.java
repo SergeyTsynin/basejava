@@ -3,14 +3,17 @@ package storage;
 import excepton.StorageException;
 import model.Resume;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public abstract class AbstractFileStorage extends AbstractStorage<File> {
     private File directory;
+
+    protected abstract void doWrite(Resume r, OutputStream file) throws IOException;
+
+    protected abstract Resume doRead(InputStream file) throws IOException;
 
     protected AbstractFileStorage(File directory) {
         Objects.requireNonNull(directory, "directory must be not null");
@@ -31,7 +34,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected void updateRoutine(Resume r, File file) {
         try {
-            doWrite(r, file);
+            doWrite(r, new BufferedOutputStream(new FileOutputStream(file)));
         } catch (IOException e) {
             throw new StorageException("Can't write file " + file.getAbsolutePath(), file.getName(), e);
         }
@@ -51,7 +54,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected Resume getRoutine(File file) {
         try {
-            return doRead(file);
+            return doRead(new BufferedInputStream(new FileInputStream(file)));
         } catch (IOException e) {
             throw new StorageException("Can't read file ", file.getName(), e);
         }
@@ -103,8 +106,10 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         }
         return result;
     }
-
-    protected abstract void doWrite(Resume r, File file) throws IOException;
-
-    protected abstract Resume doRead(File file) throws IOException;
 }
+// TODO: 12.06.2020
+// Реализовать ObjectStreamPathStorage (через java.nio.file.Path) и добавить ObjectStreamPathStorageTest
+// Сделать реализации Storage сохранения в файл через File и Path с возможностью выбора стратегии сериализации
+// (посмотрите на паттерн стратегия).
+// Кроме сохранения через ObjectOutputStream/ObjectInputStream у нас будут еще несколько вариантов сериализации.
+// Сделать тесты для тестирования сохранения через ObjectOutputStream/ObjectInputStream для File и Path.
