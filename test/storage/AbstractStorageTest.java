@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static storage.ResumeTestData.getFakeResume;
 
 public abstract class AbstractStorageTest {
 
@@ -23,6 +24,10 @@ public abstract class AbstractStorageTest {
     private static final Resume RESUME_2 = new Resume(UUID_2, "beta");
     private static final Resume RESUME_3 = new Resume(UUID_3, "gamma");
     private static final Resume RESUME_4 = new Resume(UUID_4, "delta");
+//    private static final Resume RESUME_1 = getFakeResume();
+//    private static final Resume RESUME_2 = getFakeResume();
+//    private static final Resume RESUME_3 = getFakeResume();
+//    private static final Resume RESUME_4 = getFakeResume();
 
     protected AbstractStorageTest(Storage storage) {
         this.storage = storage;

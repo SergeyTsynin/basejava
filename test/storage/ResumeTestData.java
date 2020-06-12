@@ -200,7 +200,7 @@ public class ResumeTestData {
         return kislin;
     }
 
-    private static Resume getFakeResume() {
+    static Resume getFakeResume() {
 
         final Random rnd = new Random();
         String[] firstName = new String[]{"Марина", "Светлана", "Ирина", "Анна"};
