@@ -33,7 +33,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         try {
             doWrite(r, file);
         } catch (IOException e) {
-            throw new StorageException("IO Error", file.getName(), e);
+            throw new StorageException("Can't write file " + file.getAbsolutePath(), file.getName(), e);
         }
     }
 
@@ -43,13 +43,9 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
             //noinspection ResultOfMethodCallIgnored
             file.createNewFile();
         } catch (IOException e) {
-            throw new StorageException("IO Error", file.getName(), e);
+            throw new StorageException("Can't create file " + file.getAbsolutePath(), file.getName(), e);
         }
-        try {
-            doUpdate(r, file);
-        } catch (IOException e) {
-            throw new StorageException("IO Error", file.getName(), e);
-        }
+        updateRoutine(r, file);
     }
 
     @Override
@@ -57,15 +53,14 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         try {
             return doRead(file);
         } catch (IOException e) {
-            throw new StorageException("IO Error", file.getName(), e);
+            throw new StorageException("Can't read file ", file.getName(), e);
         }
     }
 
     @Override
     protected void deleteRoutine(File file) {
-        boolean result = file.delete();
-        if (!result) {
-            throw new StorageException("Can't delete", file.getName());
+        if (!file.delete()) {
+            throw new StorageException("Can't delete " + file.getAbsolutePath(), file.getName());
         }
     }
 
@@ -94,7 +89,11 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     @Override
     public int size() {
-        return listOfFiles().length;
+        String[] list = directory.list();
+        if (list == null) {
+            throw new StorageException("Directory read error", null);
+        }
+        return list.length;
     }
 
     private File[] listOfFiles() {
@@ -107,19 +106,5 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     protected abstract void doWrite(Resume r, File file) throws IOException;
 
-    protected abstract void doUpdate(Resume r, File file) throws IOException;
-
     protected abstract Resume doRead(File file) throws IOException;
 }
-/*
-+ AbstractFileStorage
----------------------------------------------------
--- directory.listFiles() - делай проверку на null, если null, бросай StorageException
--- deleteRoutine - file.delete() - обрабатывай значение которое возвращает этот метод, если файл не удален, бросай StorageException
--- clear- удаляй при помощи метода deleteRoutine
-  if (file.isFile()) - директория тоже является неким видом файла, ее тоже надо удалать
--- saveRoutine - замени doWrite на doUpdate и перенеси вызов этого метода за пределы блока try catch, нужно разделить
-иксепшены которые можно получить в ходе виполнения метода.
--- size - дешевле будет получать размер у списка имен файлов .list()
-
- */
