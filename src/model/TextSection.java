@@ -3,19 +3,19 @@ package model;
 import java.util.Objects;
 
 public class TextSection extends Section {
-    private final String CONTENT;
+    private final String content;
 
     public TextSection(String content) {
-        Objects.requireNonNull(this.CONTENT = content);
+        Objects.requireNonNull(this.content = content);
     }
 
     public String getContent() {
-        return CONTENT;
+        return content;
     }
 
     @Override
     public String toString() {
-        return CONTENT;
+        return content;
     }
 
     @Override
@@ -25,11 +25,11 @@ public class TextSection extends Section {
 
         TextSection that = (TextSection) o;
 
-        return CONTENT.equals(that.CONTENT);
+        return content.equals(that.content);
     }
 
     @Override
     public int hashCode() {
-        return CONTENT.hashCode();
+        return content.hashCode();
     }
 }
