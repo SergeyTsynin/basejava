@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import static org.junit.Assert.*;
 import static storage.ResumeTestData.getFakeResume;
 
 public abstract class AbstractStorageTest {
+    //    protected static final File STORAGE_DIR = new File("D:\\_Java\\projects\\basejava\\storage");
+    protected static final String STORAGE_DIR = "D:\\_Java\\projects\\basejava\\storage";
 
     protected Storage storage;
     private static final String UUID_1 = "uuid1";
@@ -56,7 +59,7 @@ public abstract class AbstractStorageTest {
     public void update() {
         Resume updatedResume = new Resume(UUID_1, "omega");
         storage.update(updatedResume);
-        assertSame(storage.get(UUID_1), updatedResume);
+        assertEquals(updatedResume, storage.get(UUID_1));
         assertSize(3);
     }
 
