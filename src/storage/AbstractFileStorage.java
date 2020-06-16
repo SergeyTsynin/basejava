@@ -15,7 +15,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     protected abstract Resume doRead(InputStream is) throws IOException;
 
-    protected AbstractFileStorage(File directory) {
+    AbstractFileStorage(File directory) {
         Objects.requireNonNull(directory, "directory must be not null");
         if (!directory.isDirectory()) {
             throw new IllegalArgumentException(directory.getAbsolutePath() + " is not directory");
@@ -108,7 +108,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     }
 }
 // TODO: 12.06.2020
-// Реализовать ObjectStreamPathStorage (через java.nio.file.Path) и добавить ObjectStreamPathStorageTest
+// Реализовать ObjectStreamStorage (через java.nio.file.Path) и добавить ObjectStreamPathStorageTest
 // Сделать реализации Storage сохранения в файл через File и Path с возможностью выбора стратегии сериализации
 // (посмотрите на паттерн стратегия).
 // Кроме сохранения через ObjectOutputStream/ObjectInputStream у нас будут еще несколько вариантов сериализации.
