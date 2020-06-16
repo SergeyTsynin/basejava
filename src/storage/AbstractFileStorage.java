@@ -15,7 +15,8 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     protected abstract Resume doRead(InputStream is) throws IOException;
 
-    AbstractFileStorage(File directory) {
+    AbstractFileStorage(String dir) {
+        directory = new File(dir);
         Objects.requireNonNull(directory, "directory must be not null");
         if (!directory.isDirectory()) {
             throw new IllegalArgumentException(directory.getAbsolutePath() + " is not directory");

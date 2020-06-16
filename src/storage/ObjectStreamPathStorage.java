@@ -5,8 +5,8 @@ import model.Resume;
 
 import java.io.*;
 
-public class ObjectStreamPathStorage extends AbstractFileStorage {
-    ObjectStreamPathStorage(File directory) {
+public class ObjectStreamPathStorage extends AbstractPathStorage {
+    ObjectStreamPathStorage(String directory) {
         super(directory);
     }
 

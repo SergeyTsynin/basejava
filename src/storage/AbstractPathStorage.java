@@ -92,6 +92,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
 
     @Override
     public int size() {
+//        return 0;
         return (int) listOfPaths().count();
     }
 
