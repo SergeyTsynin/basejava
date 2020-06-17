@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class WhatDidIDoInThisPlace {
+public class WhatDidIDoInThisPlace implements Serializable {
     private final String title;
     private final String description;
     private final LocalDate dateBegin;

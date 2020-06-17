@@ -8,7 +8,7 @@ import java.util.*;
 public class ResumeTestData {
     public static void main(String[] args) {
 //        Resume test = getTestKislinResume();
-        Resume test = getFakeResume();
+        Resume test = getFakeResume("uuid42");
         System.out.println(test);
         System.out.println(test.getAll());
     }
@@ -200,7 +200,7 @@ public class ResumeTestData {
         return kislin;
     }
 
-    static Resume getFakeResume() {
+    static Resume getFakeResume(String uuid) {
 
         final Random rnd = new Random();
         String[] firstName = new String[]{"Марина", "Светлана", "Ирина", "Анна"};
@@ -208,7 +208,7 @@ public class ResumeTestData {
         String fullName = firstName[rnd.nextInt(4)] + " " +
                 lastName[rnd.nextInt(4)];
 
-        Resume guineaPig = new Resume(fullName);
+        Resume guineaPig = new Resume(uuid, fullName);
 
         String convertedFN = transliterate(fullName);
         int pointPosition = convertedFN.indexOf(".");

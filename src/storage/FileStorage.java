@@ -106,8 +106,3 @@ public class FileStorage extends AbstractStorage<File> {
         return result;
     }
 }
-// TODO: 12.06.2020
-// Сделать реализации Storage сохранения в файл через File и Path с возможностью выбора стратегии сериализации
-// (посмотрите на паттерн стратегия).
-// Кроме сохранения через ObjectOutputStream/ObjectInputStream у нас будут еще несколько вариантов сериализации.
-// Сделать тесты для тестирования сохранения через ObjectOutputStream/ObjectInputStream для File и Path.

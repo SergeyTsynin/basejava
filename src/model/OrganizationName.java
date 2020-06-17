@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class OrganizationName {
+public class OrganizationName implements Serializable {
     private final String name;
     private final String URL;
 
