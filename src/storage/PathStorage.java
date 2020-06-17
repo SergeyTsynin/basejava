@@ -2,6 +2,7 @@ package storage;
 
 import excepton.StorageException;
 import model.Resume;
+import storage.serialization.ObjectStreamSerialization;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -13,15 +14,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-public abstract class AbstractPathStorage extends AbstractStorage<Path> {
+public class PathStorage extends AbstractStorage<Path> {
     private Path directory;
+    private ObjectStreamSerialization serialization;
 
-    protected abstract void doWrite(Resume r, OutputStream os) throws IOException;
-
-    protected abstract Resume doRead(InputStream is) throws IOException;
-
-    AbstractPathStorage(String dir) {
+    PathStorage(String dir, ObjectStreamSerialization serialization) {
         directory = Paths.get(dir);
+        this.serialization = serialization;
         Objects.requireNonNull(directory, "directory must be not null");
         if (!Files.isDirectory(directory)) {
             throw new IllegalArgumentException(dir + " is not directory");
@@ -39,7 +38,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
     @Override
     protected void updateRoutine(Resume r, Path path) {
         try {
-            doWrite(r, Files.newOutputStream(path));
+            serialization.doWrite(r, Files.newOutputStream(path));
         } catch (IOException e) {
             throw new StorageException("Can't write file " + path.toAbsolutePath(), path.getFileName().toString(), e);
         }
@@ -58,7 +57,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
     @Override
     protected Resume getRoutine(Path path) {
         try {
-            return doRead(Files.newInputStream(path));
+            return serialization.doRead(Files.newInputStream(path));
         } catch (IOException e) {
             throw new StorageException("Can't read file ", path.getFileName().toString(), e);
         }
@@ -103,8 +102,3 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
         }
     }
 }
-// TODO: 12.06.2020
-// Сделать реализации Storage сохранения в файл через File и Path с возможностью выбора стратегии сериализации
-// (посмотрите на паттерн стратегия).
-// Кроме сохранения через ObjectOutputStream/ObjectInputStream у нас будут еще несколько вариантов сериализации.
-// Сделать тесты для тестирования сохранения через ObjectOutputStream/ObjectInputStream для File и Path.
