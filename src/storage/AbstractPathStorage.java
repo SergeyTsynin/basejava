@@ -92,7 +92,6 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
 
     @Override
     public int size() {
-//        return 0;
         return (int) listOfPaths().count();
     }
 
@@ -105,8 +104,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
     }
 }
 // TODO: 12.06.2020
-// Реализовать ObjectStreamPathStorage (через java.nio.Path.Path) и добавить ObjectStreamPathStorageTest
-// Сделать реализации Storage сохранения в файл через Path и Path с возможностью выбора стратегии сериализации
+// Сделать реализации Storage сохранения в файл через File и Path с возможностью выбора стратегии сериализации
 // (посмотрите на паттерн стратегия).
 // Кроме сохранения через ObjectOutputStream/ObjectInputStream у нас будут еще несколько вариантов сериализации.
-// Сделать тесты для тестирования сохранения через ObjectOutputStream/ObjectInputStream для Path и Path.
+// Сделать тесты для тестирования сохранения через ObjectOutputStream/ObjectInputStream для File и Path.
