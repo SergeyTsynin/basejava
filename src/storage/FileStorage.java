@@ -5,9 +5,11 @@ import model.Resume;
 import storage.serialization.StreamSerialization;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FileStorage extends AbstractStorage<File> {
     private File directory;
@@ -73,20 +75,14 @@ public class FileStorage extends AbstractStorage<File> {
 
     @Override
     protected List<Resume> doGetAll() {
-        List<Resume> result = new ArrayList<>();
-        File[] files = listOfFiles();
-        for (File file : files) {
-            result.add(getRoutine(file));
-        }
-        return result;
+        return streamOfFiles()
+                .map(this::getRoutine)
+                .collect(Collectors.toList());
     }
 
     @Override
     public void clear() {
-        File[] files = listOfFiles();
-        for (File file : files) {
-            deleteRoutine(file);
-        }
+        streamOfFiles().forEach(this::deleteRoutine);
     }
 
     @Override
@@ -98,11 +94,11 @@ public class FileStorage extends AbstractStorage<File> {
         return list.length;
     }
 
-    private File[] listOfFiles() {
+    private Stream<File> streamOfFiles() {
         File[] result = directory.listFiles();
         if (result == null) {
             throw new StorageException(".listFiles was return null", null);
         }
-        return result;
+        return Arrays.stream(result);
     }
 }

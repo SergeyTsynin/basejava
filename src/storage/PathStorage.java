@@ -79,20 +79,20 @@ public class PathStorage extends AbstractStorage<Path> {
 
     @Override
     protected List<Resume> doGetAll() {
-        return listOfPaths().map(this::getRoutine).collect(Collectors.toList());
+        return streamOfPaths().map(this::getRoutine).collect(Collectors.toList());
     }
 
     @Override
     public void clear() {
-        listOfPaths().forEach(this::deleteRoutine);
+        streamOfPaths().forEach(this::deleteRoutine);
     }
 
     @Override
     public int size() {
-        return (int) listOfPaths().count();
+        return (int) streamOfPaths().count();
     }
 
-    private Stream<Path> listOfPaths() {
+    private Stream<Path> streamOfPaths() {
         try {
             return Files.list(directory);
         } catch (IOException e) {
