@@ -9,9 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class PathStorage extends AbstractStorage<Path> {
@@ -32,13 +32,13 @@ public class PathStorage extends AbstractStorage<Path> {
 
     @Override
     public Path getSearchKey(String uuid) {
-        return Paths.get(directory.toString(), uuid);
+        return directory.resolve(uuid);
     }
 
     @Override
     protected void updateRoutine(Resume r, Path path) {
         try {
-            serialization.doWrite(r, Files.newOutputStream(path));
+            serialization.doWrite(r, new BufferedOutputStream(Files.newOutputStream(path)));
         } catch (IOException e) {
             throw new StorageException("Can't write file " + path.toAbsolutePath(), path.getFileName().toString(), e);
         }
@@ -57,7 +57,7 @@ public class PathStorage extends AbstractStorage<Path> {
     @Override
     protected Resume getRoutine(Path path) {
         try {
-            return serialization.doRead(Files.newInputStream(path));
+            return serialization.doRead(new BufferedInputStream(Files.newInputStream(path)));
         } catch (IOException e) {
             throw new StorageException("Can't read file ", path.getFileName().toString(), e);
         }
@@ -79,9 +79,7 @@ public class PathStorage extends AbstractStorage<Path> {
 
     @Override
     protected List<Resume> doGetAll() {
-        List<Resume> result = new ArrayList<>();
-        listOfPaths().forEach(path -> result.add(getRoutine(path)));
-        return result;
+        return listOfPaths().map(this::getRoutine).collect(Collectors.toList());
     }
 
     @Override
