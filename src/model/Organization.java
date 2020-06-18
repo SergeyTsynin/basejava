@@ -6,18 +6,18 @@ import java.util.Objects;
 
 public class Organization implements Serializable {
     private final OrganizationName name;
-    private final List<WhatDidIDoInThisPlace> whatDidIDoInThisPlace;
+    private final List<Position> position;
 
-    public Organization(OrganizationName name, List<WhatDidIDoInThisPlace> whatDidIDoInThisPlace) {
+    public Organization(OrganizationName name, List<Position> position) {
         Objects.requireNonNull(this.name = name);
-        Objects.requireNonNull(this.whatDidIDoInThisPlace = whatDidIDoInThisPlace);
+        Objects.requireNonNull(this.position = position);
     }
 
     @Override
     public String toString() {
         return "\r\n" +
                 name + "\r\n" +
-                whatDidIDoInThisPlace;
+                position;
     }
 
     @Override
@@ -28,13 +28,13 @@ public class Organization implements Serializable {
         Organization that = (Organization) o;
 
         if (!name.equals(that.name)) return false;
-        return whatDidIDoInThisPlace.equals(that.whatDidIDoInThisPlace);
+        return position.equals(that.position);
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 31 * result + whatDidIDoInThisPlace.hashCode();
+        result = 31 * result + position.hashCode();
         return result;
     }
 }

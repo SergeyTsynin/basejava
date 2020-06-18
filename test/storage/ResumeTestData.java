@@ -48,7 +48,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Java Online Projects", "http://javaops.ru/"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Автор проекта.",
                                         "Создание, организация и проведение Java онлайн проектов и стажировок.",
                                         LocalDate.of(2013, 10, 1),
@@ -58,7 +58,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Wrike", "https://www.wrike.com/"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Старший разработчик (backend)",
                                         "Проектирование и разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO.",
                                         LocalDate.of(2014, 10, 1),
@@ -68,7 +68,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("RIT Center", ""),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Java архитектор",
                                         "Организация процесса разработки системы ERP для разных окружений: релизная политика, версионирование, ведение CI (Jenkins), миграция базы (кастомизация Flyway), конфигурирование системы (pgBoucer, Nginx), AAA via SSO. Архитектура БД и серверной части системы. Разработка интергационных сервисов: CMIS, BPMN2, 1C (WebServices), сервисов общего назначения (почта, экспорт в pdf, doc, html). Интеграция Alfresco JLAN для online редактирование из браузера документов MS Office. Maven + plugin development, Ant, Apache Commons, Spring security, Spring MVC, Tomcat,WSO2, xcmis, OpenCmis, Bonita, Python scripting, Unix shell remote scripting via ssh tunnels, PL/Python",
                                         LocalDate.of(2012, 4, 1),
@@ -78,7 +78,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Luxoft (Deutsche Bank)", "http://www.luxoft.ru/"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Ведущий программист",
                                         "Участие в проекте Deutsche Bank CRM (WebLogic, Hibernate, Spring, Spring MVC, SmartGWT, GWT, Jasper, Oracle). Реализация клиентской и серверной части CRM. Реализация RIA-приложения для администрирования, мониторинга и анализа результатов в области алгоритмического трейдинга. JPA, Spring, Spring-MVC, GWT, ExtGWT (GXT), Highstock, Commet, HTML5.",
                                         LocalDate.of(2010, 12, 1),
@@ -88,7 +88,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Yota", "https://www.yota.ru/"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Ведущий специалист",
                                         "Дизайн и имплементация Java EE фреймворка для отдела \"Платежные Системы\" (GlassFish v2.1, v3, OC4J, EJB3, JAX-WS RI 2.1, Servlet 2.4, JSP, JMX, JMS, Maven2). Реализация администрирования, статистики и мониторинга фреймворка. Разработка online JMX клиента (Python/ Jython, Django, ExtJS)",
                                         LocalDate.of(2008, 6, 1),
@@ -98,7 +98,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Enkata", "http://enkata.com/"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Разработчик ПО",
                                         "Реализация клиентской (Eclipse RCP) и серверной (JBoss 4.2, Hibernate 3.0, Tomcat, JMS) частей кластерного J2EE приложения (OLAP, Data mining).",
                                         LocalDate.of(2007, 3, 1),
@@ -108,7 +108,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Siemens AG", "https://www.siemens.com/ru/ru/home.html"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Разработчик ПО",
                                         "Разработка информационной модели, проектирование интерфейсов, реализация и отладка ПО на мобильной IN платформе Siemens @vantage (Java, Unix).",
                                         LocalDate.of(2005, 1, 1),
@@ -118,7 +118,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Alcatel", "http://www.alcatel.ru/"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Инженер по аппаратному и программному тестированию",
                                         "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM).",
                                         LocalDate.of(1997, 9, 1),
@@ -133,7 +133,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Coursera", "https://www.coursera.org/course/progfun"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "\"Functional Programming Principles in Scala\" by Martin Odersky",
                                         null,
                                         LocalDate.of(2013, 3, 1),
@@ -143,7 +143,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Luxoft", "http://www.luxoft-training.ru/training/catalog/course.html?ID=22366"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Курс \"Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.\" ",
                                         null,
                                         LocalDate.of(2011, 3, 1),
@@ -153,7 +153,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Siemens AG", "http://www.siemens.ru/"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "3 месяца обучения мобильным IN сетям (Берлин)",
                                         null,
                                         LocalDate.of(2005, 1, 1),
@@ -163,7 +163,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Alcatel", "http://www.alcatel.ru/"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "6 месяцев обучения цифровым телефонным сетям (Москва)",
                                         null,
                                         LocalDate.of(1997, 9, 1),
@@ -173,13 +173,13 @@ public class ResumeTestData {
                 new Organization(
                         notDoubledOrganizationName,
                         new ArrayList<>(Arrays.asList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Аспирантура (программист С, С++)",
                                         null,
                                         LocalDate.of(1993, 9, 1),
                                         LocalDate.of(1996, 7, 1)
                                 ),
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Инженер (программист Fortran, C)",
                                         null,
                                         LocalDate.of(1987, 9, 1),
@@ -189,7 +189,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Заочная физико-техническая школа при МФТИ", "http://www.school.mipt.ru/"),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Закончил с отличием",
                                         null,
                                         LocalDate.of(1984, 9, 1),
@@ -281,7 +281,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName(names[0], "http://" + names[0] + getFakeOrganizationDomain()),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         getFakeJobTitle(),
                                         getFakeJobDescription(),
                                         dates[1],
@@ -291,7 +291,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName(names[1], "http://" + names[1] + getFakeOrganizationDomain()),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         getFakeJobTitle(),
                                         getFakeJobDescription(),
                                         dates[3],
@@ -304,7 +304,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Школа " + names[2], "http://" + names[2] + getFakeOrganizationDomain()),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Закончила с отличием",
                                         null,
                                         dates[5],
@@ -314,7 +314,7 @@ public class ResumeTestData {
                 new Organization(
                         new OrganizationName("Ясли " + names[3], "http://" + names[3] + getFakeOrganizationDomain()),
                         new ArrayList<>(Collections.singletonList(
-                                new WhatDidIDoInThisPlace(
+                                new Position(
                                         "Выгнали за неуспеваемость",
                                         null,
                                         dates[7],

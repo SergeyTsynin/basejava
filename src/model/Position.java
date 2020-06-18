@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class WhatDidIDoInThisPlace implements Serializable {
+public class Position implements Serializable {
     private final String title;
     private final String description;
     private final LocalDate dateBegin;
     private final LocalDate dateEnd;
 
-    public WhatDidIDoInThisPlace(String title, String description, LocalDate dateBegin, LocalDate dateEnd) {
+    public Position(String title, String description, LocalDate dateBegin, LocalDate dateEnd) {
         Objects.requireNonNull(this.title = title);
         this.description = description;
         Objects.requireNonNull(this.dateBegin = dateBegin);
@@ -30,7 +30,7 @@ public class WhatDidIDoInThisPlace implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        WhatDidIDoInThisPlace that = (WhatDidIDoInThisPlace) o;
+        Position that = (Position) o;
 
         if (!title.equals(that.title)) return false;
         if (!Objects.equals(description, that.description)) return false;
