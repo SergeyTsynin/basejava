@@ -2,7 +2,7 @@ package storage;
 
 import excepton.StorageException;
 import model.Resume;
-import storage.serialization.ObjectStreamSerialization;
+import storage.serialization.StreamSerialization;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -16,9 +16,9 @@ import java.util.stream.Stream;
 
 public class PathStorage extends AbstractStorage<Path> {
     private Path directory;
-    private ObjectStreamSerialization serialization;
+    private StreamSerialization serialization;
 
-    PathStorage(String dir, ObjectStreamSerialization serialization) {
+    PathStorage(String dir, StreamSerialization serialization) {
         directory = Paths.get(dir);
         this.serialization = serialization;
         Objects.requireNonNull(directory, "directory must be not null");
