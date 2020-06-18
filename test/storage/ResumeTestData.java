@@ -365,7 +365,6 @@ public class ResumeTestData {
                 sb.append((char) (rnd.nextInt(122 - 97) + 97 + 1));
             }
             names[j] = sb.toString();
-            System.out.println(names[j]);
         }
         return names;
     }
