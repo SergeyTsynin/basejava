@@ -3,10 +3,13 @@ package model;
 import java.util.Objects;
 
 public class TextSection extends Section {
-    private final String content;
+    private String content;
 
     public TextSection(String content) {
         Objects.requireNonNull(this.content = content);
+    }
+
+    public TextSection() {
     }
 
     public String getContent() {

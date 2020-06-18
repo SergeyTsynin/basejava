@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class ListSection extends Section {
-    private final List<String> CONTENT;
+    private List<String> CONTENT;
 
     public ListSection(List<String> content) {
         Objects.requireNonNull(this.CONTENT = content);
+    }
+
+    public ListSection() {
     }
 
     public List<String> getContent() {

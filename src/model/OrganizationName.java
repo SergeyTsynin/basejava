@@ -1,11 +1,17 @@
 package model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class OrganizationName implements Serializable {
-    private final String name;
-    private final String URL;
+    private String name;
+    private String URL;
+
+    public OrganizationName() {
+    }
 
     public OrganizationName(String name, String url) {
         Objects.requireNonNull(this.name = name);

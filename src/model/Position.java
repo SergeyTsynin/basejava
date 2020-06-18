@@ -1,20 +1,31 @@
 package model;
 
+import util.LocalDateAdapter;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Position implements Serializable {
-    private final String title;
-    private final String description;
-    private final LocalDate dateBegin;
-    private final LocalDate dateEnd;
+    private String title;
+    private String description;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate dateBegin;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private LocalDate dateEnd;
 
     public Position(String title, String description, LocalDate dateBegin, LocalDate dateEnd) {
         Objects.requireNonNull(this.title = title);
         this.description = description;
         Objects.requireNonNull(this.dateBegin = dateBegin);
         Objects.requireNonNull(this.dateEnd = dateEnd);
+    }
+
+    public Position() {
     }
 
     @Override

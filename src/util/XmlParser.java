@@ -29,6 +29,7 @@ public class XmlParser {
     public <T> T unmarshall(Reader reader) {
         try {
             return (T) unmarshaller.unmarshal(reader);
+            // TODO: 18.06.2020 ask what is it.
         } catch (JAXBException e) {
             throw new IllegalStateException(e);
         }
