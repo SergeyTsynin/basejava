@@ -4,23 +4,23 @@ import java.util.List;
 import java.util.Objects;
 
 public class ListSection extends Section {
-    private List<String> CONTENT;
+    private List<String> content;
 
     public ListSection(List<String> content) {
-        Objects.requireNonNull(this.CONTENT = content);
+        Objects.requireNonNull(this.content = content);
     }
 
     public ListSection() {
     }
 
     public List<String> getContent() {
-        return CONTENT;
+        return content;
     }
 
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (String key : CONTENT) {
+        for (String key : content) {
             result.append(key).append("\r\n");
         }
         return result.toString();
@@ -33,11 +33,11 @@ public class ListSection extends Section {
 
         ListSection that = (ListSection) o;
 
-        return CONTENT.equals(that.CONTENT);
+        return content.equals(that.content);
     }
 
     @Override
     public int hashCode() {
-        return CONTENT.hashCode();
+        return content.hashCode();
     }
 }
