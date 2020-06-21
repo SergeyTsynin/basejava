@@ -19,9 +19,9 @@ public class PathStorage extends AbstractStorage<Path> {
     private StreamSerialization serialization;
 
     PathStorage(String dir, StreamSerialization serialization) {
+        Objects.requireNonNull(dir, "directory must be not null");
         directory = Paths.get(dir);
         this.serialization = serialization;
-        Objects.requireNonNull(directory, "directory must be not null");
         if (!Files.isDirectory(directory)) {
             throw new IllegalArgumentException(dir + " is not directory");
         }
@@ -40,7 +40,7 @@ public class PathStorage extends AbstractStorage<Path> {
         try {
             serialization.doWrite(r, new BufferedOutputStream(Files.newOutputStream(path)));
         } catch (IOException e) {
-            throw new StorageException("Can't write file " + path.toAbsolutePath(), getUuid(path), e);
+            throw new StorageException("Can't write file " + path.toAbsolutePath(), getFileName(path), e);
         }
     }
 
@@ -49,7 +49,7 @@ public class PathStorage extends AbstractStorage<Path> {
         try {
             Files.createFile(path);
         } catch (IOException e) {
-            throw new StorageException("Can't create file " + path.toAbsolutePath(), getUuid(path), e);
+            throw new StorageException("Can't create file " + path.toAbsolutePath(), getFileName(path), e);
         }
         updateRoutine(r, path);
     }
@@ -59,7 +59,7 @@ public class PathStorage extends AbstractStorage<Path> {
         try {
             return serialization.doRead(new BufferedInputStream(Files.newInputStream(path)));
         } catch (IOException e) {
-            throw new StorageException("Can't read file ", getUuid(path), e);
+            throw new StorageException("Can't read file " + path.toAbsolutePath(), getFileName(path), e);
         }
     }
 
@@ -68,7 +68,7 @@ public class PathStorage extends AbstractStorage<Path> {
         try {
             Files.delete(path);
         } catch (IOException e) {
-            throw new StorageException("Can't delete " + path.toAbsolutePath(), getUuid(path), e);
+            throw new StorageException("Can't delete " + path.toAbsolutePath(), getFileName(path), e);
         }
     }
 
@@ -100,7 +100,7 @@ public class PathStorage extends AbstractStorage<Path> {
         }
     }
 
-    private String getUuid(Path path) {
+    private String getFileName(Path path) {
         return path.getFileName().toString();
     }
 }
