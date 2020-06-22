@@ -28,6 +28,22 @@ public class Position implements Serializable {
     public Position() {
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDate getDateBegin() {
+        return dateBegin;
+    }
+
+    public LocalDate getDateEnd() {
+        return dateEnd;
+    }
+
     @Override
     public String toString() {
         return dateBegin + " - " +

@@ -19,6 +19,14 @@ public class Organization implements Serializable {
     public Organization() {
     }
 
+    public OrganizationName getName() {
+        return name;
+    }
+
+    public List<Position> getPositions() {
+        return position;
+    }
+
     @Override
     public String toString() {
         return "\r\n" +

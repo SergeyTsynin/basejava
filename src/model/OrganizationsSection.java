@@ -13,6 +13,10 @@ public class OrganizationsSection extends Section {
     public OrganizationsSection() {
     }
 
+    public List<Organization> getContent() {
+        return organizations;
+    }
+
     @Override
     public String toString() {
         return "OrganizationsSection{" +
