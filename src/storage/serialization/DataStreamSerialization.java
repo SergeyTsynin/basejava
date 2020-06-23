@@ -5,6 +5,7 @@ import model.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -16,35 +17,54 @@ public class DataStreamSerialization implements StreamSerialization {
             dos.writeUTF(r.getFullName());
 
             Map<ContactType, String> contacts = r.getContactsMap();
-            dos.writeInt(contacts.size());
-            for (Map.Entry<ContactType, String> entry : contacts.entrySet()) {
+            writeCollection(dos, contacts.entrySet(), entry -> {
                 dos.writeUTF(entry.getKey().name());
                 dos.writeUTF(entry.getValue());
-            }
+            });
 
-            Map<SectionType, Section> sections = r.getSectionsMap();
-            dos.writeInt(sections.size());
-            for (Map.Entry<SectionType, Section> entry : sections.entrySet()) {
+            writeCollection(dos, r.getSectionsMap().entrySet(), entry -> {
                 SectionType sectionType = entry.getKey();
+                Section content = entry.getValue();
                 dos.writeUTF(sectionType.name());
                 switch (sectionType) {
                     case OBJECTIVE:
                     case PERSONAL:
-                        dos.writeUTF(((TextSection) entry.getValue()).getContent());
+                        dos.writeUTF(((TextSection) content).getContent());
                         break;
                     case ACHIEVEMENT:
                     case QUALIFICATIONS:
-                        writeStringList(((ListSection) entry.getValue()).getContent(), dos);
+                        writeCollection(dos, ((ListSection) content).getContent(), dos::writeUTF);
                         break;
                     case EXPERIENCE:
                     case EDUCATION:
-                        writeOrganizations(((OrganizationsSection) entry.getValue()).getContent(), dos);
+                        writeCollection(dos, ((OrganizationsSection) content).getContent(), org -> {
+                            dos.writeUTF(org.getName().getName());
+                            dos.writeUTF(nullCheck(org.getName().getUrl()));
+                            writeCollection(dos, org.getPositions(), position -> {
+                                dos.writeUTF(position.getTitle());
+                                dos.writeUTF(nullCheck(position.getDescription()));
+                                dos.writeUTF(position.getDateBegin().toString());
+                                dos.writeUTF(position.getDateEnd().toString());
+                            });
+                        });
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + sectionType);
                 }
-            }
+            });
         }
+    }
+
+    private <T> void writeCollection(DataOutputStream dos, Collection<T> collection,
+                                     ElementWriter<T> writer) throws IOException {
+        dos.writeInt(collection.size());
+        for (T element : collection) {
+            writer.write(element);
+        }
+    }
+
+    private interface ElementWriter<T> {
+        void write(T t) throws IOException;
     }
 
     @Override
