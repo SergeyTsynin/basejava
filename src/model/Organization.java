@@ -12,8 +12,8 @@ public class Organization implements Serializable {
     private List<Position> position;
 
     public Organization(OrganizationName name, List<Position> position) {
-        Objects.requireNonNull(this.name = name);
-        Objects.requireNonNull(this.position = position);
+        this.name = Objects.requireNonNull(name);
+        this.position = Objects.requireNonNull(position);
     }
 
     public Organization() {

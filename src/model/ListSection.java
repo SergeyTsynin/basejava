@@ -7,7 +7,7 @@ public class ListSection extends Section {
     private List<String> content;
 
     public ListSection(List<String> content) {
-        Objects.requireNonNull(this.content = content);
+        this.content = Objects.requireNonNull(content);
     }
 
     public ListSection() {

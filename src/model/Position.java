@@ -19,10 +19,10 @@ public class Position implements Serializable {
     private LocalDate dateEnd;
 
     public Position(String title, String description, LocalDate dateBegin, LocalDate dateEnd) {
-        Objects.requireNonNull(this.title = title);
+        this.title = Objects.requireNonNull(title);
         this.description = description;
-        Objects.requireNonNull(this.dateBegin = dateBegin);
-        Objects.requireNonNull(this.dateEnd = dateEnd);
+        this.dateBegin = Objects.requireNonNull(dateBegin);
+        this.dateEnd = Objects.requireNonNull(dateEnd);
     }
 
     public Position() {

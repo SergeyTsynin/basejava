@@ -14,7 +14,7 @@ public class OrganizationName implements Serializable {
     }
 
     public OrganizationName(String name, String url) {
-        Objects.requireNonNull(this.name = name);
+        this.name = Objects.requireNonNull(name);
         this.URL = url;
     }
 

@@ -6,7 +6,7 @@ public class TextSection extends Section {
     private String content;
 
     public TextSection(String content) {
-        Objects.requireNonNull(this.content = content);
+        this.content = Objects.requireNonNull(content);
     }
 
     public TextSection() {
