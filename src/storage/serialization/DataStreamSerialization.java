@@ -30,7 +30,7 @@ public class DataStreamSerialization implements StreamSerialization {
                 switch (sectionType) {
                     case OBJECTIVE:
                     case PERSONAL:
-                        dos.writeUTF(entry.getValue().toString());
+                        dos.writeUTF(((TextSection) entry.getValue()).getContent());
                         break;
                     case ACHIEVEMENT:
                     case QUALIFICATIONS:
@@ -136,3 +136,16 @@ public class DataStreamSerialization implements StreamSerialization {
         return result;
     }
 }
+/*
+теперь надо зарефакторить запись всех коллекций (т.е. все for в doWrite) через функц интерфейс
+посмотри на реализацию forEach
+default void forEach(Consumer<? super T> action) {
+    Objects.requireNonNull(action);
+    for (T t : this) {
+        action.accept(t);
+    }
+}
+надо сделать что-то подобное, т.к. использование готового forEach в нашей ситуации не подходит,
+нам нужен метод который прокидывает IOException дальше, и свой кастомный функциональный интерфейс
+(как записывать каждый отд элемент коллекции) который тоже прокидывает IOException
+ */
