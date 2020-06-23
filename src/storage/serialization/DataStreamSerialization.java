@@ -103,12 +103,12 @@ public class DataStreamSerialization implements StreamSerialization {
         dos.writeInt(content.size());
         for (Organization org : content) {
             dos.writeUTF(org.getName().getName());
-            dos.writeUTF(org.getName().getUrl());
+            dos.writeUTF(nullCheck(org.getName().getUrl()));
             List<Position> positions = org.getPositions();
             dos.writeInt(org.getPositions().size());
             for (Position position : positions) {
                 dos.writeUTF(position.getTitle());
-                dos.writeUTF((position.getDescription() == null) ? "null" : position.getDescription());
+                dos.writeUTF(nullCheck(position.getDescription()));
                 dos.writeUTF(position.getDateBegin().toString());
                 dos.writeUTF(position.getDateEnd().toString());
             }
@@ -120,13 +120,12 @@ public class DataStreamSerialization implements StreamSerialization {
         List<Organization> result = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             String name = dis.readUTF();
-            String url = dis.readUTF();
+            String url = nullRestore(dis.readUTF());
             int positionSize = dis.readInt();
             List<Position> positions = new ArrayList<>();
             for (int j = 0; j < positionSize; j++) {
                 String title = dis.readUTF();
-                String description = dis.readUTF();
-                if (description.equals("null")) description = null;
+                String description = nullRestore(dis.readUTF());
                 LocalDate dateBegin = LocalDate.parse(dis.readUTF());
                 LocalDate dateEnd = LocalDate.parse(dis.readUTF());
                 positions.add(new Position(title, description, dateBegin, dateEnd));
@@ -134,6 +133,14 @@ public class DataStreamSerialization implements StreamSerialization {
             result.add(new Organization(new OrganizationName(name, url), positions));
         }
         return result;
+    }
+
+    private String nullCheck(String s) {
+        return (s == null) ? "null" : s;
+    }
+
+    private String nullRestore(String s) {
+        return (s.equals("null") ? null : s);
     }
 }
 /*
